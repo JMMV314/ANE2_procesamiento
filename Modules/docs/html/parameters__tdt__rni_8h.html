@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>proyecto_ane: Referencia del Archivo parameters_tdt_rni.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">proyecto_ane
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funciones</a>  </div>
+  <div class="headertitle">
+<div class="title">Referencia del Archivo parameters_tdt_rni.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Definción de función para analizar señales RNI y generar un archivo JSON con resultados.  
+<a href="#details">Más...</a></p>
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;complex.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Dependencia gráfica adjunta para parameters_tdt_rni.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="parameters__tdt__rni_8h__incl.png" border="0" usemap="#parameters__tdt__rni_8h" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div>
+<p><a href="parameters__tdt__rni_8h_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:a7d0140937114629cf8495cf220d50191"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parameters__tdt__rni_8h.html#a7d0140937114629cf8495cf220d50191">parameter_tdt_rni</a> (int threshold, double *canalization, double *<a class="el" href="main_8c.html#a57e3ef1c76e7264b26d5ac6ce93061da">bandwidth</a>, int canalization_length, uint64_t central_freq, uint8_t file_sample)</td></tr>
+<tr class="memdesc:a7d0140937114629cf8495cf220d50191"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analiza datos de señales RNI y guarda los resultados en un archivo JSON.  <a href="parameters__tdt__rni_8h.html#a7d0140937114629cf8495cf220d50191">Más...</a><br /></td></tr>
+<tr class="separator:a7d0140937114629cf8495cf220d50191"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Definción de función para analizar señales RNI y generar un archivo JSON con resultados. </p>
+<p>Este archivo contiene la definición de la función <code>parameter_tdt_rni</code> que calcula métricas relacionadas con la radiación electromagnética, como la intensidad de campo eléctrico (V/m) y el porcentaje del límite ocupado, guardándolos en un archivo JSON. </p>
+</div><h2 class="groupheader">Documentación de las funciones</h2>
+<a id="a7d0140937114629cf8495cf220d50191"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d0140937114629cf8495cf220d50191">&#9670;&nbsp;</a></span>parameter_tdt_rni()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void parameter_tdt_rni </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>threshold</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>canalization</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>bandwidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>canalization_length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>central_freq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>file_sample</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Analiza datos de señales RNI y guarda los resultados en un archivo JSON. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">modulation</td><td>Esquema de modulación utilizado (por ejemplo, QAM, PSK). </td></tr>
+    <tr><td class="paramname">central_freq</td><td>Frecuencia central de la señal (en Hz). </td></tr>
+    <tr><td class="paramname">file_sample</td><td>Identificador del archivo de muestra CS8 que contiene los datos IQ.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>La función procesa datos IQ para calcular métricas como:</p><ul>
+<li>Intensidad del campo eléctrico ( V/m ).</li>
+<li>Porcentaje del límite permitido para la intensidad del campo.</li>
+</ul>
+<p>Los resultados se almacenan en un archivo JSON llamado <code>parameters_tdt.json</code>.</p>
+<p>Si ocurre un error al abrir el archivo, muestra un mensaje de error. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

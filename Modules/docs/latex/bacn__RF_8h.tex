@@ -1,0 +1,206 @@
+\hypertarget{bacn__RF_8h}{}\doxysection{Referencia del Archivo bacn\+\_\+\+R\+F.\+h}
+\label{bacn__RF_8h}\index{bacn\_RF.h@{bacn\_RF.h}}
+
+
+Definiciones y prototipos para el manejo del dispositivo Hack\+RF.  
+
+
+{\ttfamily \#include $<$libhackrf/hackrf.\+h$>$}\newline
+Dependencia gráfica adjunta para bacn\+\_\+\+R\+F.\+h\+:
+% FIG 0
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
+% FIG 1
+\doxysubsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{bacn__RF_8h_ae475be69fc9a8f7763e5f7c706189dcb}{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+A\+M\+P\+L\+E\+\_\+\+R\+A\+T\+E\+\_\+\+HZ}}~(20000000)
+\begin{DoxyCompactList}\small\item\em Tasa de muestreo predeterminada en Hz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{bacn__RF_8h_a1b0bf03037a294c1160b3c91126477df}{D\+E\+F\+A\+U\+L\+T\+\_\+\+C\+E\+N\+T\+R\+A\+L\+\_\+\+F\+R\+E\+Q\+\_\+\+HZ}}~(10000000)
+\begin{DoxyCompactList}\small\item\em Frecuencia central predeterminada en Hz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{bacn__RF_8h_a10e24a1ae8c1e4da7a233bd91b1a7ea1}{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+T\+O\+\_\+\+X\+F\+E\+R\+\_\+\+M\+AX}}~(20000000)
+\begin{DoxyCompactList}\small\item\em Número máximo de muestras a transferir por defecto. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{bacn__RF_8h_ab1d57f40cf08975094fdd06dfb1ee390}{F\+D\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}~(8 $\ast$ 1024)
+\begin{DoxyCompactList}\small\item\em Tamaño del búfer de transmisión. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumeraciones}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6}{transceiver\+\_\+mode\+\_\+t}} \{ \mbox{\hyperlink{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6a1314d80debbe9bb145dbbf3220a74dc5}{T\+R\+A\+N\+S\+C\+E\+I\+V\+E\+R\+\_\+\+M\+O\+D\+E\+\_\+\+O\+FF}} = 0, 
+\mbox{\hyperlink{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6a67d3cd8623de0cdad6ff55649d9fc9f6}{T\+R\+A\+N\+S\+C\+E\+I\+V\+E\+R\+\_\+\+M\+O\+D\+E\+\_\+\+RX}} = 1, 
+\mbox{\hyperlink{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6a941e58a990fed4e30568445399f78f39}{T\+R\+A\+N\+S\+C\+E\+I\+V\+E\+R\+\_\+\+M\+O\+D\+E\+\_\+\+T\+DT}} = 2
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeración de los modos de operación del transceptor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{bacn__RF_8h_af0ce47b78049d707a5f9c60b6809ffd2}{stop\+\_\+main\+\_\+loop}} (void)
+\begin{DoxyCompactList}\small\item\em Detiene el bucle principal. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{bacn__RF_8h_a9c84bce41e700e6cf9ecdc396add709b}{rx\+\_\+callback}} (hackrf\+\_\+transfer $\ast$transfer)
+\begin{DoxyCompactList}\small\item\em Callback para manejar los datos recibidos del Hack\+RF. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bacn__RF_8h_ade0dfc02a379113509b1bbbb661ddc8a}{sigint\+\_\+callback\+\_\+handler}} (int signum)
+\begin{DoxyCompactList}\small\item\em Manejador de la señal S\+I\+G\+I\+NT (Ctrl+C). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bacn__RF_8h_a246c2863ad984c4fea39ec1a2aebf1e1}{sigalrm\+\_\+callback\+\_\+handler}} ()
+\begin{DoxyCompactList}\small\item\em Manejador de la señal S\+I\+G\+A\+L\+RM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{bacn__RF_8h_ad4823fd331e6ba0ca7b9eaaa14ac1922}{get\+Samples}} (int64\+\_\+t \mbox{\hyperlink{bacn__RF_8c_a410c347e43a0f96446f28a81f5f3b494}{lo\+\_\+freq}}, int64\+\_\+t \mbox{\hyperlink{bacn__RF_8c_ab5c8e6fb8c5cb14072a051b77c53c0ce}{hi\+\_\+freq}}, \mbox{\hyperlink{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6}{transceiver\+\_\+mode\+\_\+t}} transceiver\+\_\+mode, uint16\+\_\+t lna\+\_\+gain, uint16\+\_\+t vga\+\_\+gain)
+\begin{DoxyCompactList}\small\item\em Configura y ejecuta la adquisición de muestras con Hack\+RF. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Definiciones y prototipos para el manejo del dispositivo Hack\+RF. 
+
+Este archivo contiene constantes, enumeraciones y funciones utilizadas para la configuración y adquisición de datos mediante Hack\+RF. 
+
+\doxysubsection{Documentación de los \textquotesingle{}defines\textquotesingle{}}
+\mbox{\Hypertarget{bacn__RF_8h_a1b0bf03037a294c1160b3c91126477df}\label{bacn__RF_8h_a1b0bf03037a294c1160b3c91126477df}} 
+\index{bacn\_RF.h@{bacn\_RF.h}!DEFAULT\_CENTRAL\_FREQ\_HZ@{DEFAULT\_CENTRAL\_FREQ\_HZ}}
+\index{DEFAULT\_CENTRAL\_FREQ\_HZ@{DEFAULT\_CENTRAL\_FREQ\_HZ}!bacn\_RF.h@{bacn\_RF.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_CENTRAL\_FREQ\_HZ}{DEFAULT\_CENTRAL\_FREQ\_HZ}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+L\+T\+\_\+\+C\+E\+N\+T\+R\+A\+L\+\_\+\+F\+R\+E\+Q\+\_\+\+HZ~(10000000)}
+
+
+
+Frecuencia central predeterminada en Hz. 
+
+Valor por defecto\+: 10 M\+Hz. \mbox{\Hypertarget{bacn__RF_8h_ae475be69fc9a8f7763e5f7c706189dcb}\label{bacn__RF_8h_ae475be69fc9a8f7763e5f7c706189dcb}} 
+\index{bacn\_RF.h@{bacn\_RF.h}!DEFAULT\_SAMPLE\_RATE\_HZ@{DEFAULT\_SAMPLE\_RATE\_HZ}}
+\index{DEFAULT\_SAMPLE\_RATE\_HZ@{DEFAULT\_SAMPLE\_RATE\_HZ}!bacn\_RF.h@{bacn\_RF.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_SAMPLE\_RATE\_HZ}{DEFAULT\_SAMPLE\_RATE\_HZ}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+A\+M\+P\+L\+E\+\_\+\+R\+A\+T\+E\+\_\+\+HZ~(20000000)}
+
+
+
+Tasa de muestreo predeterminada en Hz. 
+
+Valor por defecto\+: 20 M\+Hz. \mbox{\Hypertarget{bacn__RF_8h_a10e24a1ae8c1e4da7a233bd91b1a7ea1}\label{bacn__RF_8h_a10e24a1ae8c1e4da7a233bd91b1a7ea1}} 
+\index{bacn\_RF.h@{bacn\_RF.h}!DEFAULT\_SAMPLES\_TO\_XFER\_MAX@{DEFAULT\_SAMPLES\_TO\_XFER\_MAX}}
+\index{DEFAULT\_SAMPLES\_TO\_XFER\_MAX@{DEFAULT\_SAMPLES\_TO\_XFER\_MAX}!bacn\_RF.h@{bacn\_RF.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_SAMPLES\_TO\_XFER\_MAX}{DEFAULT\_SAMPLES\_TO\_XFER\_MAX}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+T\+O\+\_\+\+X\+F\+E\+R\+\_\+\+M\+AX~(20000000)}
+
+
+
+Número máximo de muestras a transferir por defecto. 
+
+Valor por defecto\+: 20M muestras. \mbox{\Hypertarget{bacn__RF_8h_ab1d57f40cf08975094fdd06dfb1ee390}\label{bacn__RF_8h_ab1d57f40cf08975094fdd06dfb1ee390}} 
+\index{bacn\_RF.h@{bacn\_RF.h}!FD\_BUFFER\_SIZE@{FD\_BUFFER\_SIZE}}
+\index{FD\_BUFFER\_SIZE@{FD\_BUFFER\_SIZE}!bacn\_RF.h@{bacn\_RF.h}}
+\doxysubsubsection{\texorpdfstring{FD\_BUFFER\_SIZE}{FD\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define F\+D\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE~(8 $\ast$ 1024)}
+
+
+
+Tamaño del búfer de transmisión. 
+
+Valor por defecto\+: 8 KB. 
+
+\doxysubsection{Documentación de las enumeraciones}
+\mbox{\Hypertarget{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6}\label{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6}} 
+\index{bacn\_RF.h@{bacn\_RF.h}!transceiver\_mode\_t@{transceiver\_mode\_t}}
+\index{transceiver\_mode\_t@{transceiver\_mode\_t}!bacn\_RF.h@{bacn\_RF.h}}
+\doxysubsubsection{\texorpdfstring{transceiver\_mode\_t}{transceiver\_mode\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6}{transceiver\+\_\+mode\+\_\+t}}}
+
+
+
+Enumeración de los modos de operación del transceptor. 
+
+\begin{DoxyEnumFields}{Valores de enumeraciones}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TRANSCEIVER\_MODE\_OFF@{TRANSCEIVER\_MODE\_OFF}!bacn\_RF.h@{bacn\_RF.h}}\index{bacn\_RF.h@{bacn\_RF.h}!TRANSCEIVER\_MODE\_OFF@{TRANSCEIVER\_MODE\_OFF}}}\mbox{\Hypertarget{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6a1314d80debbe9bb145dbbf3220a74dc5}\label{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6a1314d80debbe9bb145dbbf3220a74dc5}} 
+T\+R\+A\+N\+S\+C\+E\+I\+V\+E\+R\+\_\+\+M\+O\+D\+E\+\_\+\+O\+FF&Transceptor apagado. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TRANSCEIVER\_MODE\_RX@{TRANSCEIVER\_MODE\_RX}!bacn\_RF.h@{bacn\_RF.h}}\index{bacn\_RF.h@{bacn\_RF.h}!TRANSCEIVER\_MODE\_RX@{TRANSCEIVER\_MODE\_RX}}}\mbox{\Hypertarget{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6a67d3cd8623de0cdad6ff55649d9fc9f6}\label{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6a67d3cd8623de0cdad6ff55649d9fc9f6}} 
+T\+R\+A\+N\+S\+C\+E\+I\+V\+E\+R\+\_\+\+M\+O\+D\+E\+\_\+\+RX&Modo de recepción (RX). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TRANSCEIVER\_MODE\_TDT@{TRANSCEIVER\_MODE\_TDT}!bacn\_RF.h@{bacn\_RF.h}}\index{bacn\_RF.h@{bacn\_RF.h}!TRANSCEIVER\_MODE\_TDT@{TRANSCEIVER\_MODE\_TDT}}}\mbox{\Hypertarget{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6a941e58a990fed4e30568445399f78f39}\label{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6a941e58a990fed4e30568445399f78f39}} 
+T\+R\+A\+N\+S\+C\+E\+I\+V\+E\+R\+\_\+\+M\+O\+D\+E\+\_\+\+T\+DT&Modo T\+DT. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{bacn__RF_8h_ad4823fd331e6ba0ca7b9eaaa14ac1922}\label{bacn__RF_8h_ad4823fd331e6ba0ca7b9eaaa14ac1922}} 
+\index{bacn\_RF.h@{bacn\_RF.h}!getSamples@{getSamples}}
+\index{getSamples@{getSamples}!bacn\_RF.h@{bacn\_RF.h}}
+\doxysubsubsection{\texorpdfstring{getSamples()}{getSamples()}}
+{\footnotesize\ttfamily int get\+Samples (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{lo\+\_\+freq,  }\item[{int64\+\_\+t}]{hi\+\_\+freq,  }\item[{\mbox{\hyperlink{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6}{transceiver\+\_\+mode\+\_\+t}}}]{transceiver\+\_\+mode,  }\item[{uint16\+\_\+t}]{lna\+\_\+gain,  }\item[{uint16\+\_\+t}]{vga\+\_\+gain }\end{DoxyParamCaption})}
+
+
+
+Configura y ejecuta la adquisición de muestras con Hack\+RF. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em lo\+\_\+freq} & Frecuencia inicial en Hz. \\
+\hline
+{\em hi\+\_\+freq} & Frecuencia final en Hz. \\
+\hline
+{\em transceiver\+\_\+mode} & Modo de operación del transceptor. \\
+\hline
+{\em lna\+\_\+gain} & Ganancia del amplificador de bajo ruido (L\+NA) en dB. \\
+\hline
+{\em vga\+\_\+gain} & Ganancia del amplificador de ganancia variable (V\+GA) en dB. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+int Devuelve el número de frecuencias procesadas o -\/1 en caso de error. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{bacn__RF_8h_a9c84bce41e700e6cf9ecdc396add709b}\label{bacn__RF_8h_a9c84bce41e700e6cf9ecdc396add709b}} 
+\index{bacn\_RF.h@{bacn\_RF.h}!rx\_callback@{rx\_callback}}
+\index{rx\_callback@{rx\_callback}!bacn\_RF.h@{bacn\_RF.h}}
+\doxysubsubsection{\texorpdfstring{rx\_callback()}{rx\_callback()}}
+{\footnotesize\ttfamily int rx\+\_\+callback (\begin{DoxyParamCaption}\item[{hackrf\+\_\+transfer $\ast$}]{transfer }\end{DoxyParamCaption})}
+
+
+
+Callback para manejar los datos recibidos del Hack\+RF. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em transfer} & Estructura de transferencia de Hack\+RF que contiene los datos recibidos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+int Devuelve 0 si el procesamiento fue exitoso, -\/1 en caso de error. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{bacn__RF_8h_a246c2863ad984c4fea39ec1a2aebf1e1}\label{bacn__RF_8h_a246c2863ad984c4fea39ec1a2aebf1e1}} 
+\index{bacn\_RF.h@{bacn\_RF.h}!sigalrm\_callback\_handler@{sigalrm\_callback\_handler}}
+\index{sigalrm\_callback\_handler@{sigalrm\_callback\_handler}!bacn\_RF.h@{bacn\_RF.h}}
+\doxysubsubsection{\texorpdfstring{sigalrm\_callback\_handler()}{sigalrm\_callback\_handler()}}
+{\footnotesize\ttfamily void sigalrm\+\_\+callback\+\_\+handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Manejador de la señal S\+I\+G\+A\+L\+RM. 
+
+Este manejador se ejecuta cuando se captura la señal S\+I\+G\+A\+L\+RM.
+
+Manejador de la señal S\+I\+G\+A\+L\+RM. \mbox{\Hypertarget{bacn__RF_8h_ade0dfc02a379113509b1bbbb661ddc8a}\label{bacn__RF_8h_ade0dfc02a379113509b1bbbb661ddc8a}} 
+\index{bacn\_RF.h@{bacn\_RF.h}!sigint\_callback\_handler@{sigint\_callback\_handler}}
+\index{sigint\_callback\_handler@{sigint\_callback\_handler}!bacn\_RF.h@{bacn\_RF.h}}
+\doxysubsubsection{\texorpdfstring{sigint\_callback\_handler()}{sigint\_callback\_handler()}}
+{\footnotesize\ttfamily void sigint\+\_\+callback\+\_\+handler (\begin{DoxyParamCaption}\item[{int}]{signum }\end{DoxyParamCaption})}
+
+
+
+Manejador de la señal S\+I\+G\+I\+NT (Ctrl+C). 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em signum} & Número de la señal capturada. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bacn__RF_8h_af0ce47b78049d707a5f9c60b6809ffd2}\label{bacn__RF_8h_af0ce47b78049d707a5f9c60b6809ffd2}} 
+\index{bacn\_RF.h@{bacn\_RF.h}!stop\_main\_loop@{stop\_main\_loop}}
+\index{stop\_main\_loop@{stop\_main\_loop}!bacn\_RF.h@{bacn\_RF.h}}
+\doxysubsubsection{\texorpdfstring{stop\_main\_loop()}{stop\_main\_loop()}}
+{\footnotesize\ttfamily void stop\+\_\+main\+\_\+loop (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Detiene el bucle principal. 
+
+Esta función se utiliza para finalizar la ejecución del programa de forma segura.
+
+Detiene el bucle principal. 

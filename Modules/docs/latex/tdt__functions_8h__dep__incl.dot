@@ -1,0 +1,13 @@
+digraph "tdt_functions.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="tdt_functions.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Definición de funciones para el análisis y procesamiento de señales IQ para parámetros clave."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="parameters_tdt_rni.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$parameters__tdt__rni_8c.html",tooltip="Función para analizar señales RNI y generar un archivo JSON con resultados."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="tdt.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tdt_8c.html",tooltip="Análisis de señales TDT y generación de parámetros clave."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="tdt_functions.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tdt__functions_8c.html",tooltip="Análisis y procesamiento de señales IQ para parámetros clave."];
+}

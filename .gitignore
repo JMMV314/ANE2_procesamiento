@@ -1,0 +1,14 @@
+# Ejecutables
+main
+test_capture
+*.o
+
+# Resultados de pruebas
+Samples/
+Outputs/
+*.csv
+*.png
+
+# VSCode
+.vscode/
+tempCodeRunnerFile.py

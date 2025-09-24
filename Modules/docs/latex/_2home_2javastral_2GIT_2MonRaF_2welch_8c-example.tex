@@ -1,0 +1,120 @@
+\hypertarget{_2home_2javastral_2GIT_2MonRaF_2welch_8c-example}{}\doxysection{/home/javastral/\+G\+I\+T/\+Mon\+Ra\+F/welch.\+c}
+Calcula la Densidad Espectral de Potencia (P\+SD) de Welch para señales complejas.\+Esta función aplica el método de Welch para calcular la P\+SD de una señal compleja de entrada. Divide la señal en segmentos superpuestos, aplica una ventana de Hamming a cada segmento, realiza la Transformada de Fourier en cada segmento, y promedia las potencias espectrales.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em signal} & Puntero a la señal de entrada de tipo {\ttfamily complex double}. \\
+\hline
+{\em N\+\_\+signal} & Tamaño de la señal de entrada. \\
+\hline
+{\em fs} & Frecuencia de muestreo de la señal de entrada. \\
+\hline
+{\em segment\+\_\+length} & Longitud de cada segmento en el que se divide la señal. \\
+\hline
+{\em overlap} & Factor de solapamiento entre segmentos (0 a 1). \\
+\hline
+{\em f\+\_\+out} & Puntero al arreglo donde se almacenarán las frecuencias de salida. \\
+\hline
+{\em P\+\_\+welch\+\_\+out} & Puntero al arreglo donde se almacenarán los valores calculados de la P\+SD.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Nota}
+Es necesario liberar la memoria reservada para la F\+FT usando {\ttfamily fftw\+\_\+destroy\+\_\+plan} y {\ttfamily fftw\+\_\+free}.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} N\_signal = 1024;}
+\DoxyCodeLine{complex \textcolor{keywordtype}{double} signal[N\_signal];}
+\DoxyCodeLine{\textcolor{keywordtype}{double} fs = 1000.0;}
+\DoxyCodeLine{\textcolor{keywordtype}{int} segment\_length = 256;}
+\DoxyCodeLine{\textcolor{keywordtype}{double} overlap = 0.5;}
+\DoxyCodeLine{\textcolor{keywordtype}{double} f\_out[segment\_length];}
+\DoxyCodeLine{\textcolor{keywordtype}{double} P\_welch\_out[segment\_length];}
+\DoxyCodeLine{welch\_psd\_complex(signal, N\_signal, fs, segment\_length, overlap, f\_out, P\_welch\_out);}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <complex.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <fftw3.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <math.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "welch.h"}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define PI 3.14159265358979323846}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{welch_8c_a7782130f6fb79d8dd195716ae2e85281}{generate\_hamming\_window}}(\textcolor{keywordtype}{double}* window, \textcolor{keywordtype}{int} segment\_length) \{}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} n = 0; n < segment\_length; n++) \{}
+\DoxyCodeLine{        window[n] = 0.54 -\/ 0.46 * cos((2.0 * PI * n) / (segment\_length -\/ 1));}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} welch\_psd\_complex(complex \textcolor{keywordtype}{double}* signal, \textcolor{keywordtype}{size\_t} N\_signal, \textcolor{keywordtype}{double} fs, }
+\DoxyCodeLine{                       \textcolor{keywordtype}{int} segment\_length, \textcolor{keywordtype}{double} overlap, \textcolor{keywordtype}{double}* f\_out, \textcolor{keywordtype}{double}* P\_welch\_out) \{}
+\DoxyCodeLine{    \textcolor{keywordtype}{int} step = (int)(segment\_length * (1.0 -\/ overlap));}
+\DoxyCodeLine{    \textcolor{keywordtype}{int} K = ((N\_signal -\/ segment\_length) / step) + 1;}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} psd\_size = segment\_length;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Inicializar ventana}}
+\DoxyCodeLine{    \textcolor{keywordtype}{double} window[segment\_length];}
+\DoxyCodeLine{    \mbox{\hyperlink{welch_8c_a7782130f6fb79d8dd195716ae2e85281}{generate\_hamming\_window}}(window, segment\_length);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Calcular normalización de la ventana}}
+\DoxyCodeLine{    \textcolor{keywordtype}{double} U = 0.0;}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < segment\_length; i++) \{}
+\DoxyCodeLine{        U += window[i] * window[i];}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    U /= segment\_length;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Reservar memoria para segmentos y resultados FFT}}
+\DoxyCodeLine{    complex \textcolor{keywordtype}{double}* segment = fftw\_alloc\_complex(segment\_length);}
+\DoxyCodeLine{    complex \textcolor{keywordtype}{double}* X\_k = fftw\_alloc\_complex(segment\_length);}
+\DoxyCodeLine{    fftw\_plan plan = fftw\_plan\_dft\_1d(segment\_length, segment, X\_k, FFTW\_FORWARD, FFTW\_ESTIMATE);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Inicializar PSD}}
+\DoxyCodeLine{    memset(P\_welch\_out, 0, psd\_size * \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{double}));}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Procesar cada segmento}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < K; k++) \{}
+\DoxyCodeLine{        \textcolor{keywordtype}{int} start = k * step;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// Aplicar ventana al segmento}}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < segment\_length; i++) \{}
+\DoxyCodeLine{            segment[i] = signal[start + i] * window[i];}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// Ejecutar FFT en el segmento}}
+\DoxyCodeLine{        fftw\_execute(plan);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// Acumular la potencia espectral}}
+\DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < psd\_size; i++) \{}
+\DoxyCodeLine{            \textcolor{keywordtype}{double} abs\_X\_k = cabs(X\_k[i]);}
+\DoxyCodeLine{            P\_welch\_out[i] += (abs\_X\_k * abs\_X\_k) / (fs * U);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Promediar sobre los segmentos}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < psd\_size; i++) \{}
+\DoxyCodeLine{        P\_welch\_out[i] /= K;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Generar frecuencias asociadas}}
+\DoxyCodeLine{    \textcolor{keywordtype}{double} val = fs / segment\_length;}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < psd\_size; i++) \{}
+\DoxyCodeLine{        f\_out[i] = -\/fs / 2 + i * val;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"Finish"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Liberar memoria}}
+\DoxyCodeLine{    fftw\_destroy\_plan(plan);}
+\DoxyCodeLine{    fftw\_free(segment);}
+\DoxyCodeLine{    fftw\_free(X\_k);}
+\DoxyCodeLine{\}}
+\end{DoxyCodeInclude}
+ 

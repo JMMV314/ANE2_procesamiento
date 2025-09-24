@@ -1,0 +1,58 @@
+\hypertarget{tdt_8c}{}\doxysection{Referencia del Archivo tdt.\+c}
+\label{tdt_8c}\index{tdt.c@{tdt.c}}
+
+
+Análisis de señales T\+DT y generación de parámetros clave.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$complex.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}c\+J\+S\+O\+N.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tdt\+\_\+functions.\+h\char`\"{}}\newline
+Dependencia gráfica adjunta para tdt.\+c\+:
+% FIG 0
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{tdt_8c_adadae7bc5dc095674ef3da7042242b7c}{parameter\+\_\+tdt}} (int modulation, uint64\+\_\+t central\+\_\+freq, uint8\+\_\+t file\+\_\+sample)
+\begin{DoxyCompactList}\small\item\em Procesa señales IQ para calcular parámetros clave de transmisión digital terrestre. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Análisis de señales T\+DT y generación de parámetros clave. 
+
+Este archivo implementa la función {\ttfamily parameter\+\_\+tdt}, que analiza señales IQ para calcular parámetros de transmisión digital terrestre (T\+DT) como potencia, relación portadora/ruido, M\+ER, B\+ER y otros atributos del sistema de modulación. 
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{tdt_8c_adadae7bc5dc095674ef3da7042242b7c}\label{tdt_8c_adadae7bc5dc095674ef3da7042242b7c}} 
+\index{tdt.c@{tdt.c}!parameter\_tdt@{parameter\_tdt}}
+\index{parameter\_tdt@{parameter\_tdt}!tdt.c@{tdt.c}}
+\doxysubsubsection{\texorpdfstring{parameter\_tdt()}{parameter\_tdt()}}
+{\footnotesize\ttfamily void parameter\+\_\+tdt (\begin{DoxyParamCaption}\item[{int}]{modulation,  }\item[{uint64\+\_\+t}]{central\+\_\+freq,  }\item[{uint8\+\_\+t}]{file\+\_\+sample }\end{DoxyParamCaption})}
+
+
+
+Procesa señales IQ para calcular parámetros clave de transmisión digital terrestre. 
+
+Esta función carga datos de señal IQ, analiza los parámetros relevantes para una transmisión T\+DT basada en la modulación especificada, y genera un archivo J\+S\+ON con los resultados.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em modulation} & Tipo de modulación (ej., Q\+P\+SK, Q\+A\+M16, etc.). \\
+\hline
+{\em central\+\_\+freq} & Frecuencia central de la señal (en Hz). \\
+\hline
+{\em file\+\_\+sample} & Identificador del archivo que contiene los datos de señal IQ en formato C\+S8.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Código de salida {\ttfamily E\+X\+I\+T\+\_\+\+S\+U\+C\+C\+E\+SS} si la operación se realiza con éxito.
+\end{DoxyReturn}
+\begin{DoxyNote}{Nota}
+Genera un archivo J\+S\+ON llamado {\ttfamily parameters\+\_\+tdt.\+json} con los resultados. 
+\end{DoxyNote}

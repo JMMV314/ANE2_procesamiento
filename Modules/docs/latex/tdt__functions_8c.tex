@@ -1,0 +1,325 @@
+\hypertarget{tdt__functions_8c}{}\doxysection{Referencia del Archivo tdt\+\_\+functions.\+c}
+\label{tdt__functions_8c}\index{tdt\_functions.c@{tdt\_functions.c}}
+
+
+Análisis y procesamiento de señales IQ para parámetros clave.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$complex.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}save\+\_\+to\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}welch.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tdt\+\_\+functions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}find\+\_\+closest\+\_\+index.\+h\char`\"{}}\newline
+Dependencia gráfica adjunta para tdt\+\_\+functions.\+c\+:
+% FIG 0
+\doxysubsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{tdt__functions_8c_ae71449b1cc6e6250b91f539153a7a0d3}\label{tdt__functions_8c_ae71449b1cc6e6250b91f539153a7a0d3}} 
+\#define {\bfseries M\+\_\+\+PI}~3.\+14159265358979323846
+\item 
+\mbox{\Hypertarget{tdt__functions_8c_a598a3330b3c21701223ee0ca14316eca}\label{tdt__functions_8c_a598a3330b3c21701223ee0ca14316eca}} 
+\#define {\bfseries PI}~3.\+14159265358979323846
+\end{DoxyCompactItemize}
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{tdt__functions_8c_ac5f0ac07d493c020301cfddfdd8bc834}{c\+\_\+n}} (double $\ast$Pxx, double $\ast$f, int f\+\_\+low, int f\+\_\+high)
+\begin{DoxyCompactList}\small\item\em Calcula la relación portadora/ruido (C/N) y la potencia de señal. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{tdt__functions_8c_a7f46e942d48cb4d5421e78960bdf55d6}{mer}} (int f\+\_\+low, int f\+\_\+high, double $\ast$Pxx, int N)
+\begin{DoxyCompactList}\small\item\em Calcula la Modulation Error Ratio (M\+ER). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tdt__functions_8c_adf577d2c5f9e3b1a74f020d8ce8702f0}{analyze\+\_\+signal}} (double frecuencia, const char $\ast$modulation, complex double $\ast$data, size\+\_\+t data\+\_\+len, double $\ast$mer\+\_\+value, double $\ast$ber\+\_\+value, double $\ast$c\+\_\+n\+\_\+value, double $\ast$signal\+\_\+power)
+\begin{DoxyCompactList}\small\item\em Analiza señales IQ para calcular parámetros como M\+ER, B\+ER y C/N. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tdt__functions_8c_ac5ee55a11c6ca26d3d91a5f7b7effa94}{fftshift}} (double $\ast$input, double $\ast$output, int N)
+\begin{DoxyCompactList}\small\item\em Realiza un desplazamiento F\+FT para reordenar el espectro. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tdt__functions_8c_a66771dd4ab39e8da9a73991874e18c2d}{linspace}} (double start, double end, int num, double $\ast$array)
+\begin{DoxyCompactList}\small\item\em Genera un vector de valores espaciados linealmente. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tdt__functions_8c_adfa798d538f0fb6d151f6bceef822a60}{argmin\+\_\+abs\+\_\+difference}} (double $\ast$array, int length, double value)
+\begin{DoxyCompactList}\small\item\em Encuentra el índice del valor más cercano a uno dado en un array. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{tdt__functions_8c_a6ac2b0d722778e8c6b3aa19d46c5abd1}{trapz}} (double $\ast$y, double $\ast$x, int start, int end)
+\begin{DoxyCompactList}\small\item\em Calcula la integral aproximada usando la regla del trapecio. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{tdt__functions_8c_a3933ac4594176a9427495b13f94da00a}{median}} (double $\ast$array, int start, int end)
+\begin{DoxyCompactList}\small\item\em Calcula la mediana de un subrango en un array. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tdt__functions_8c_ab14b7f5dc01c12685f12b0909b19c44c}{compare\+\_\+doubles}} (const void $\ast$a, const void $\ast$b)
+\begin{DoxyCompactList}\small\item\em Comparador para ordenar valores de tipo {\ttfamily double}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{tdt__functions_8c_a142f3d4fe51a1d93971f0a614fa46c5e}{erfc\+\_\+manual}} (double x, int num\+\_\+steps)
+\begin{DoxyCompactList}\small\item\em Calcula la función de error complementaria (erfc) manualmente. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{tdt__functions_8c_a32fde2fcd8a623575b3a5684883d1c2b}{Q}} (double x)
+\begin{DoxyCompactList}\small\item\em Calcula la función Q para un valor dado. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{tdt__functions_8c_a0aa6715defe9e7f8cf6c994f10a8ab01}{calculate\+\_\+\+B\+E\+R\+\_\+from\+\_\+snr}} (double S\+NR, float M)
+\begin{DoxyCompactList}\small\item\em Calcula la B\+ER basada en el S\+NR y la modulación. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Análisis y procesamiento de señales IQ para parámetros clave. 
+
+Este archivo incluye funciones para calcular parámetros como C/N, M\+ER, y B\+ER usando técnicas de procesamiento de señales, como el método de Welch, y genera resultados relacionados con modulación digital. 
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{tdt__functions_8c_adf577d2c5f9e3b1a74f020d8ce8702f0}\label{tdt__functions_8c_adf577d2c5f9e3b1a74f020d8ce8702f0}} 
+\index{tdt\_functions.c@{tdt\_functions.c}!analyze\_signal@{analyze\_signal}}
+\index{analyze\_signal@{analyze\_signal}!tdt\_functions.c@{tdt\_functions.c}}
+\doxysubsubsection{\texorpdfstring{analyze\_signal()}{analyze\_signal()}}
+{\footnotesize\ttfamily void analyze\+\_\+signal (\begin{DoxyParamCaption}\item[{double}]{frecuencia,  }\item[{const char $\ast$}]{modulation,  }\item[{complex double $\ast$}]{data,  }\item[{size\+\_\+t}]{data\+\_\+len,  }\item[{double $\ast$}]{mer\+\_\+value,  }\item[{double $\ast$}]{ber\+\_\+value,  }\item[{double $\ast$}]{c\+\_\+n\+\_\+value,  }\item[{double $\ast$}]{signal\+\_\+power }\end{DoxyParamCaption})}
+
+
+
+Analiza señales IQ para calcular parámetros como M\+ER, B\+ER y C/N. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em frecuencia} & Frecuencia central de la señal (en Hz). \\
+\hline
+{\em modulation} & Tipo de modulación (ej., 64-\/Q\+AM, 16-\/Q\+AM). \\
+\hline
+{\em data} & Datos IQ complejos. \\
+\hline
+{\em data\+\_\+len} & Número de muestras en los datos IQ. \\
+\hline
+{\em mer\+\_\+value} & Referencia para almacenar el valor calculado de M\+ER. \\
+\hline
+{\em ber\+\_\+value} & Referencia para almacenar el valor calculado de B\+ER. \\
+\hline
+{\em c\+\_\+n\+\_\+value} & Referencia para almacenar el valor calculado de C/N. \\
+\hline
+{\em signal\+\_\+power} & Referencia para almacenar la potencia de la señal. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tdt__functions_8c_adfa798d538f0fb6d151f6bceef822a60}\label{tdt__functions_8c_adfa798d538f0fb6d151f6bceef822a60}} 
+\index{tdt\_functions.c@{tdt\_functions.c}!argmin\_abs\_difference@{argmin\_abs\_difference}}
+\index{argmin\_abs\_difference@{argmin\_abs\_difference}!tdt\_functions.c@{tdt\_functions.c}}
+\doxysubsubsection{\texorpdfstring{argmin\_abs\_difference()}{argmin\_abs\_difference()}}
+{\footnotesize\ttfamily int argmin\+\_\+abs\+\_\+difference (\begin{DoxyParamCaption}\item[{double $\ast$}]{array,  }\item[{int}]{length,  }\item[{double}]{value }\end{DoxyParamCaption})}
+
+
+
+Encuentra el índice del valor más cercano a uno dado en un array. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em array} & Vector de entrada. \\
+\hline
+{\em length} & Longitud del vector. \\
+\hline
+{\em value} & Valor a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Índice del valor más cercano. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{tdt__functions_8c_ac5f0ac07d493c020301cfddfdd8bc834}\label{tdt__functions_8c_ac5f0ac07d493c020301cfddfdd8bc834}} 
+\index{tdt\_functions.c@{tdt\_functions.c}!c\_n@{c\_n}}
+\index{c\_n@{c\_n}!tdt\_functions.c@{tdt\_functions.c}}
+\doxysubsubsection{\texorpdfstring{c\_n()}{c\_n()}}
+{\footnotesize\ttfamily double c\+\_\+n (\begin{DoxyParamCaption}\item[{double $\ast$}]{Pxx,  }\item[{double $\ast$}]{f,  }\item[{int}]{f\+\_\+low,  }\item[{int}]{f\+\_\+high }\end{DoxyParamCaption})}
+
+
+
+Calcula la relación portadora/ruido (C/N) y la potencia de señal. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em Pxx} & Densidad espectral de potencia (P\+SD) calculada. \\
+\hline
+{\em f} & Vector de frecuencias asociadas a la P\+SD. \\
+\hline
+{\em f\+\_\+low} & Índice inferior del rango de frecuencia de interés. \\
+\hline
+{\em f\+\_\+high} & Índice superior del rango de frecuencia de interés. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Relación C/N (en dB) y potencia de señal. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{tdt__functions_8c_a0aa6715defe9e7f8cf6c994f10a8ab01}\label{tdt__functions_8c_a0aa6715defe9e7f8cf6c994f10a8ab01}} 
+\index{tdt\_functions.c@{tdt\_functions.c}!calculate\_BER\_from\_snr@{calculate\_BER\_from\_snr}}
+\index{calculate\_BER\_from\_snr@{calculate\_BER\_from\_snr}!tdt\_functions.c@{tdt\_functions.c}}
+\doxysubsubsection{\texorpdfstring{calculate\_BER\_from\_snr()}{calculate\_BER\_from\_snr()}}
+{\footnotesize\ttfamily double calculate\+\_\+\+B\+E\+R\+\_\+from\+\_\+snr (\begin{DoxyParamCaption}\item[{double}]{S\+NR,  }\item[{float}]{M }\end{DoxyParamCaption})}
+
+
+
+Calcula la B\+ER basada en el S\+NR y la modulación. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em S\+NR} & Relación señal-\/ruido (en dB). \\
+\hline
+{\em M} & Orden de la modulación (ej., 16 para 16-\/Q\+AM). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+B\+ER estimada. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{tdt__functions_8c_ab14b7f5dc01c12685f12b0909b19c44c}\label{tdt__functions_8c_ab14b7f5dc01c12685f12b0909b19c44c}} 
+\index{tdt\_functions.c@{tdt\_functions.c}!compare\_doubles@{compare\_doubles}}
+\index{compare\_doubles@{compare\_doubles}!tdt\_functions.c@{tdt\_functions.c}}
+\doxysubsubsection{\texorpdfstring{compare\_doubles()}{compare\_doubles()}}
+{\footnotesize\ttfamily int compare\+\_\+doubles (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Comparador para ordenar valores de tipo {\ttfamily double}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em a} & Primer valor a comparar. \\
+\hline
+{\em b} & Segundo valor a comparar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+-\/1 si {\ttfamily a $<$ b}, 1 si {\ttfamily a $>$ b}, 0 si son iguales. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{tdt__functions_8c_a142f3d4fe51a1d93971f0a614fa46c5e}\label{tdt__functions_8c_a142f3d4fe51a1d93971f0a614fa46c5e}} 
+\index{tdt\_functions.c@{tdt\_functions.c}!erfc\_manual@{erfc\_manual}}
+\index{erfc\_manual@{erfc\_manual}!tdt\_functions.c@{tdt\_functions.c}}
+\doxysubsubsection{\texorpdfstring{erfc\_manual()}{erfc\_manual()}}
+{\footnotesize\ttfamily double erfc\+\_\+manual (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{int}]{num\+\_\+steps }\end{DoxyParamCaption})}
+
+
+
+Calcula la función de error complementaria (erfc) manualmente. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em x} & Valor de entrada. \\
+\hline
+{\em num\+\_\+steps} & Número de pasos en la aproximación. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Valor aproximado de {\ttfamily erfc(x)}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{tdt__functions_8c_ac5ee55a11c6ca26d3d91a5f7b7effa94}\label{tdt__functions_8c_ac5ee55a11c6ca26d3d91a5f7b7effa94}} 
+\index{tdt\_functions.c@{tdt\_functions.c}!fftshift@{fftshift}}
+\index{fftshift@{fftshift}!tdt\_functions.c@{tdt\_functions.c}}
+\doxysubsubsection{\texorpdfstring{fftshift()}{fftshift()}}
+{\footnotesize\ttfamily void fftshift (\begin{DoxyParamCaption}\item[{double $\ast$}]{input,  }\item[{double $\ast$}]{output,  }\item[{int}]{N }\end{DoxyParamCaption})}
+
+
+
+Realiza un desplazamiento F\+FT para reordenar el espectro. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em input} & Vector de entrada. \\
+\hline
+{\em output} & Vector de salida con el espectro desplazado. \\
+\hline
+{\em N} & Tamaño del vector. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tdt__functions_8c_a66771dd4ab39e8da9a73991874e18c2d}\label{tdt__functions_8c_a66771dd4ab39e8da9a73991874e18c2d}} 
+\index{tdt\_functions.c@{tdt\_functions.c}!linspace@{linspace}}
+\index{linspace@{linspace}!tdt\_functions.c@{tdt\_functions.c}}
+\doxysubsubsection{\texorpdfstring{linspace()}{linspace()}}
+{\footnotesize\ttfamily void linspace (\begin{DoxyParamCaption}\item[{double}]{start,  }\item[{double}]{end,  }\item[{int}]{num,  }\item[{double $\ast$}]{array }\end{DoxyParamCaption})}
+
+
+
+Genera un vector de valores espaciados linealmente. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em start} & Valor inicial. \\
+\hline
+{\em end} & Valor final. \\
+\hline
+{\em num} & Número de valores a generar. \\
+\hline
+{\em array} & Arreglo donde se almacenan los valores generados. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tdt__functions_8c_a3933ac4594176a9427495b13f94da00a}\label{tdt__functions_8c_a3933ac4594176a9427495b13f94da00a}} 
+\index{tdt\_functions.c@{tdt\_functions.c}!median@{median}}
+\index{median@{median}!tdt\_functions.c@{tdt\_functions.c}}
+\doxysubsubsection{\texorpdfstring{median()}{median()}}
+{\footnotesize\ttfamily double median (\begin{DoxyParamCaption}\item[{double $\ast$}]{array,  }\item[{int}]{start,  }\item[{int}]{end }\end{DoxyParamCaption})}
+
+
+
+Calcula la mediana de un subrango en un array. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em array} & Vector de entrada. \\
+\hline
+{\em start} & Índice inicial del rango. \\
+\hline
+{\em end} & Índice final del rango. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Mediana del rango especificado. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{tdt__functions_8c_a7f46e942d48cb4d5421e78960bdf55d6}\label{tdt__functions_8c_a7f46e942d48cb4d5421e78960bdf55d6}} 
+\index{tdt\_functions.c@{tdt\_functions.c}!mer@{mer}}
+\index{mer@{mer}!tdt\_functions.c@{tdt\_functions.c}}
+\doxysubsubsection{\texorpdfstring{mer()}{mer()}}
+{\footnotesize\ttfamily double mer (\begin{DoxyParamCaption}\item[{int}]{f\+\_\+low,  }\item[{int}]{f\+\_\+high,  }\item[{double $\ast$}]{Pxx,  }\item[{int}]{N }\end{DoxyParamCaption})}
+
+
+
+Calcula la Modulation Error Ratio (M\+ER). 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em f\+\_\+low} & Índice inferior del rango de frecuencia de interés. \\
+\hline
+{\em f\+\_\+high} & Índice superior del rango de frecuencia de interés. \\
+\hline
+{\em Pxx} & Densidad espectral de potencia (P\+SD) calculada. \\
+\hline
+{\em N} & Longitud del vector P\+SD. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Valor de M\+ER en dB. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{tdt__functions_8c_a32fde2fcd8a623575b3a5684883d1c2b}\label{tdt__functions_8c_a32fde2fcd8a623575b3a5684883d1c2b}} 
+\index{tdt\_functions.c@{tdt\_functions.c}!Q@{Q}}
+\index{Q@{Q}!tdt\_functions.c@{tdt\_functions.c}}
+\doxysubsubsection{\texorpdfstring{Q()}{Q()}}
+{\footnotesize\ttfamily double Q (\begin{DoxyParamCaption}\item[{double}]{x }\end{DoxyParamCaption})}
+
+
+
+Calcula la función Q para un valor dado. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em x} & Valor de entrada. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Valor de la función Q. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{tdt__functions_8c_a6ac2b0d722778e8c6b3aa19d46c5abd1}\label{tdt__functions_8c_a6ac2b0d722778e8c6b3aa19d46c5abd1}} 
+\index{tdt\_functions.c@{tdt\_functions.c}!trapz@{trapz}}
+\index{trapz@{trapz}!tdt\_functions.c@{tdt\_functions.c}}
+\doxysubsubsection{\texorpdfstring{trapz()}{trapz()}}
+{\footnotesize\ttfamily double trapz (\begin{DoxyParamCaption}\item[{double $\ast$}]{y,  }\item[{double $\ast$}]{x,  }\item[{int}]{start,  }\item[{int}]{end }\end{DoxyParamCaption})}
+
+
+
+Calcula la integral aproximada usando la regla del trapecio. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em y} & Vector de valores de la función. \\
+\hline
+{\em x} & Vector de valores de la variable independiente. \\
+\hline
+{\em start} & Índice inicial para la integración. \\
+\hline
+{\em end} & Índice final para la integración. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Integral aproximada. 
+\end{DoxyReturn}

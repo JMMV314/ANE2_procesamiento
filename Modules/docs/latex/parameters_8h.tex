@@ -1,0 +1,52 @@
+\hypertarget{parameters_8h}{}\doxysection{Referencia del Archivo parameters.\+h}
+\label{parameters_8h}\index{parameters.h@{parameters.h}}
+
+
+Definción de la función que calcula parámetros a partir de señales IQ utilizando el método de Welch y análisis de canales.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+Dependencia gráfica adjunta para parameters.\+h\+:
+% FIG 0
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
+% FIG 1
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{parameters_8h_a398068b1a84c070e93efa6b84bfc5bf4}{parameter}} (int threshold, double $\ast$\mbox{\hyperlink{main_8c_a35305e1ad842c6975e8e3d90ab5bc48f}{canalisation}}, double $\ast$\mbox{\hyperlink{main_8c_a57e3ef1c76e7264b26d5ac6ce93061da}{bandwidth}}, int canalisation\+\_\+length, uint64\+\_\+t central\+\_\+freq, uint8\+\_\+t file\+\_\+sample)
+\begin{DoxyCompactList}\small\item\em Realiza análisis espectral y genera parámetros para canales específicos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Definción de la función que calcula parámetros a partir de señales IQ utilizando el método de Welch y análisis de canales. 
+
+Este archivo contiene la función {\ttfamily parameter} que realiza análisis espectral y cálculo de parámetros para un conjunto de canales a partir de una señal IQ. 
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{parameters_8h_a398068b1a84c070e93efa6b84bfc5bf4}\label{parameters_8h_a398068b1a84c070e93efa6b84bfc5bf4}} 
+\index{parameters.h@{parameters.h}!parameter@{parameter}}
+\index{parameter@{parameter}!parameters.h@{parameters.h}}
+\doxysubsubsection{\texorpdfstring{parameter()}{parameter()}}
+{\footnotesize\ttfamily void parameter (\begin{DoxyParamCaption}\item[{int}]{threshold,  }\item[{double $\ast$}]{canalisation,  }\item[{double $\ast$}]{bandwidth,  }\item[{int}]{canalisation\+\_\+length,  }\item[{uint64\+\_\+t}]{central\+\_\+freq,  }\item[{uint8\+\_\+t}]{file\+\_\+sample }\end{DoxyParamCaption})}
+
+
+
+Realiza análisis espectral y genera parámetros para canales específicos. 
+
+Esta función procesa una señal IQ, calcula su densidad espectral de potencia (P\+SD) utilizando el método de Welch, y analiza los canales especificados para calcular parámetros como potencia, S\+NR y presencia de señales.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em threshold} & Umbral de potencia máxima para determinar la presencia de una señal. \\
+\hline
+{\em canalization} & Arreglo de frecuencias centrales de los canales a analizar. \\
+\hline
+{\em bandwidth} & Ancho de banda de cada canal correspondiente a {\ttfamily canalization}. \\
+\hline
+{\em canalization\+\_\+length} & Número de canales a analizar. \\
+\hline
+{\em central\+\_\+freq} & Frecuencia central de la señal (en Hz). \\
+\hline
+{\em file\+\_\+sample} & Archivo de entrada que contiene la señal IQ en formato C\+S8. \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,36 @@
+\doxysection{bacn\+\_\+\+RF.\+h}
+\hypertarget{bacn__RF_8h_source}{}\label{bacn__RF_8h_source}\mbox{\hyperlink{bacn__RF_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ BACN\_RF\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ BACN\_RF\_H}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <libhackrf/hackrf.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ DEFAULT\_SAMPLE\_RATE\_HZ\ (20000000)}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ DEFAULT\_CENTRAL\_FREQ\_HZ\ (10000000)}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ DEFAULT\_SAMPLES\_TO\_XFER\_MAX\ (20000000)}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ FD\_BUFFER\_SIZE\ (8\ *\ 1024)}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6a1314d80debbe9bb145dbbf3220a74dc5}{TRANSCEIVER\_MODE\_OFF}}\ =\ 0,\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6a67d3cd8623de0cdad6ff55649d9fc9f6}{TRANSCEIVER\_MODE\_RX}}\ =\ 1,\ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6a941e58a990fed4e30568445399f78f39}{TRANSCEIVER\_MODE\_TDT}}\ =\ 2,\ }
+\DoxyCodeLine{00054\ \}\ \mbox{\hyperlink{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6}{transceiver\_mode\_t}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{bacn__RF_8h_af0ce47b78049d707a5f9c60b6809ffd2}{stop\_main\_loop}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00069\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{bacn__RF_8h_a9c84bce41e700e6cf9ecdc396add709b}{rx\_callback}}(hackrf\_transfer*\ transfer);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00076\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{bacn__RF_8h_ade0dfc02a379113509b1bbbb661ddc8a}{sigint\_callback\_handler}}(\textcolor{keywordtype}{int}\ signum);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00083\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{bacn__RF_8h_a246c2863ad984c4fea39ec1a2aebf1e1}{sigalrm\_callback\_handler}}();}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00095\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{bacn__RF_8h_ad4823fd331e6ba0ca7b9eaaa14ac1922}{getSamples}}(int64\_t\ \mbox{\hyperlink{bacn__RF_8c_a410c347e43a0f96446f28a81f5f3b494}{lo\_freq}},\ int64\_t\ \mbox{\hyperlink{bacn__RF_8c_ab5c8e6fb8c5cb14072a051b77c53c0ce}{hi\_freq}},\ \mbox{\hyperlink{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6}{transceiver\_mode\_t}}\ transceiver\_mode,\ uint16\_t\ lna\_gain,\ uint16\_t\ vga\_gain);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ BACN\_RF\_H}}
+
+\end{DoxyCode}
