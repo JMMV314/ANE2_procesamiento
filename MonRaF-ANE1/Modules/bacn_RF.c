@@ -17,8 +17,6 @@
 #include "IQ.h"
 #include "../Drivers/bacn_gpio.h"
 
-// long samples_to_xfer_max=20000000; // valor por defecto (20M)---------------------
-
 /** @brief Variable para controlar la finalización del bucle principal. */
 static volatile bool do_exit = false;
 
@@ -147,7 +145,7 @@ void sigalrm_callback_handler()
 }
 
 
-int getSamples(uint8_t central_freq_Rx_MHz, transceiver_mode_t transceiver_mode, uint16_t lna_gain, uint16_t vga_gain, uint16_t centralFrec_TDT, bool is_second_sample)
+int getSamples(uint8_t central_freq_Rx_MHz, long samples_to_xfer_max, transceiver_mode_t transceiver_mode, uint16_t lna_gain, uint16_t vga_gain, uint16_t centralFrec_TDT, bool is_second_sample)
 {
     int result = 0;
 	

@@ -36,7 +36,7 @@
  */
 // #define DEFAULT_SAMPLES_TO_XFER_MAX (20000000)
 
-extern long samples_to_xfer_max; // se define en test_capture.c----------------
+// extern long samples_to_xfer_max; // se define en test_capture.c----------------
 #define DEFAULT_SAMPLES_TDT_XFER_MAX (6500000)
 
 /**
@@ -96,6 +96,6 @@ void sigalrm_callback_handler();
  * @param vga_gain Ganancia del amplificador de ganancia variable (VGA) en dB.
  * @return int Devuelve el número de frecuencias procesadas o -1 en caso de error.
  */
-int getSamples(uint8_t bands, transceiver_mode_t transceiver_mode, uint16_t lna_gain, uint16_t vga_gain, uint16_t centralFrec, bool is_second_sample);
+int getSamples(uint8_t bands, long samples_to_xfer_max, transceiver_mode_t transceiver_mode, uint16_t lna_gain, uint16_t vga_gain, uint16_t centralFrec, bool is_second_sample);
 
 #endif // BACN_RF_H

@@ -23,12 +23,12 @@ void switch_ANTENNA(bool RF) {
     printf("[stub] switch_ANTENNA llamado (ignorado)\n");
 }
 
-int capture(long num_samples, uint64_t central_frequency_mhz) {
+int capture(long samples_to_xfer_max, uint64_t central_frequency_mhz) {
 
     // ================================
     // 0) CONFIGURAR Nº DE MUESTRAS
     // ================================
-    samples_to_xfer_max = num_samples;  // 20M
+    // samples_to_xfer_max = num_samples;  // 20M
 
 
     // ================================
@@ -46,7 +46,7 @@ int capture(long num_samples, uint64_t central_frequency_mhz) {
     printf("▶ Capturando en %lu MHz (LNA=%u, VGA=%u, N=%ld)...\n",
            central_frequency_mhz, lna_gain, vga_gain, samples_to_xfer_max);
 
-    int r = getSamples(central_frequency_mhz, mode, lna_gain, vga_gain,
+    int r = getSamples(central_frequency_mhz, samples_to_xfer_max, mode, lna_gain, vga_gain,
                        centralFrec_TDT, is_second_sample);
     if (r != 0) {
         fprintf(stderr, "❌ getSamples devolvió %d\n", r);
