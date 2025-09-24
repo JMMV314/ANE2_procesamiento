@@ -13,7 +13,6 @@
 #include "Modules/welch.h"
 #include "Modules/save_to_file.h"
 
-long samples_to_xfer_max = 20000000; // valor por defecto (20M)---------------------
 
 // --- STUBS requeridos por bacn_RF.c ---
 int central_freq[10] = {100}; // se rellena en getSamples()
@@ -24,12 +23,6 @@ void switch_ANTENNA(bool RF) {
 }
 
 int capture(long samples_to_xfer_max, uint64_t central_frequency_mhz) {
-
-    // ================================
-    // 0) CONFIGURAR Nº DE MUESTRAS
-    // ================================
-    // samples_to_xfer_max = num_samples;  // 20M
-
 
     // ================================
     // 1) PARÁMETROS DE CAPTURA
