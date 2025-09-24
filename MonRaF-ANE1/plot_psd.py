@@ -1,56 +1,54 @@
+import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
-import csv
 
-# Cambia esta variable a True para superponer, False para subplots
-superponer = False  # <--- Cambia aquí
+# ===========================
+# Pregunta al usuario
+# ===========================
+opcion = input("¿Quieres graficar 3 espectros (escribe '3') o solo 1 espectro (escribe '1')?: ")
 
-csv_files = [
-    ("Outputs/98_20M.csv", "PSD 98_20M"),
-    ("Outputs/resultado_psd_db.csv", "PSD 100_20M"),
-    ("Outputs/102_20M.csv", "PSD 102_20M")
-]
+if opcion == "3":
+    # ===========================
+    # Pedir rutas de 3 archivos CSV
+    # ===========================
+    file1 = input("Escribe la ruta del primer CSV (ej: 200k.csv): ")
+    file2 = input("Escribe la ruta del segundo CSV (ej: 2M.csv): ")
+    file3 = input("Escribe la ruta del tercer CSV (ej: 20M.csv): ")
 
-datos = []
-for csv_file, label in csv_files:
-    f = []
-    Pxx_db = []
-    try:
-        with open(csv_file, newline='') as csvfile:
-            reader = csv.reader(csvfile)
-            next(reader, None)  # saltar cabecera
-            for row in reader:
-                if len(row) < 2:
-                    continue
-                f.append(float(row[0]))
-                Pxx_db.append(float(row[1]))
-        datos.append((f, Pxx_db, label))
-    except FileNotFoundError:
-        datos.append((None, None, f"No encontrado\n{label}"))
+    # Cargar cada CSV
+    df1 = pd.read_csv(file1)
+    df2 = pd.read_csv(file2)
+    df3 = pd.read_csv(file3)
 
-if superponer:
-    plt.figure(figsize=(8, 5))
-    # Definir los desfases para cada curva
-    offsets = [0.0, 2e6, 4e6]
-    for idx, (f, Pxx_db, label) in enumerate(datos):
-        if f is not None:
-            f_offset = [x + offsets[idx] for x in f]
-            plt.plot(f_offset, Pxx_db, label=label)
-    plt.xlabel('Frecuencia (Hz)')
-    plt.ylabel('PSD (dB)')
-    plt.title('PSD superpuestas (desfasadas)')
-    plt.grid(True)
+    # Graficar
+    plt.figure(figsize=(10, 6))
+    plt.plot(df1.iloc[:, 0], df1.iloc[:, 1], label=file1)
+    plt.plot(df2.iloc[:, 0], df2.iloc[:, 1], label=file2)
+    plt.plot(df3.iloc[:, 0], df3.iloc[:, 1], label=file3)
+    plt.xlabel("Frecuencia (Hz)")
+    plt.ylabel("PSD")
+    plt.title("Comparación de 3 espectros")
     plt.legend()
-    plt.tight_layout()
+    plt.grid(True)
     plt.show()
+
+elif opcion == "1":
+    # ===========================
+    # Pedir ruta de 1 archivo CSV
+    # ===========================
+    file1 = input("Escribe la ruta del CSV: ")
+
+    df = pd.read_csv(file1)
+
+    # Graficar
+    plt.figure(figsize=(10, 6))
+    plt.plot(df.iloc[:, 0], df.iloc[:, 1], label=file1)
+    plt.xlabel("Frecuencia (Hz)")
+    plt.ylabel("PSD")
+    plt.title("Espectro")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
 else:
-    fig, axs = plt.subplots(1, 3, figsize=(15, 5), sharey=True)
-    for idx, (f, Pxx_db, label) in enumerate(datos):
-        if f is not None:
-            axs[idx].plot(f, Pxx_db)
-        axs[idx].set_title(label)
-        axs[idx].set_xlabel('Frecuencia (Hz)')
-        axs[idx].grid(True)
-    axs[0].set_ylabel('PSD (dB)')
-    plt.tight_layout()
-    plt.show()
+    print("⚠️ Opción no válida. Escribe '3' o '1'.")
+
