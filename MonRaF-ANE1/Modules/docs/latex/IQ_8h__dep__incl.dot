@@ -1,0 +1,11 @@
+digraph "IQ.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="IQ.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Declaración de funciones relacionadas con la lectura de archivos CS8, manejo de bandas y creación de ..."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="IQ.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$IQ_8c.html",tooltip="Implementación de funciones relacionadas con la lectura de archivos CS8, manejo de bandas y creación ..."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="main.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8c.html",tooltip="Programa principal para la manipulación de señales IQ en formato CS8."];
+}

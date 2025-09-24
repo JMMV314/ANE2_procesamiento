@@ -1,0 +1,54 @@
+\hypertarget{welch_8h}{}\doxysection{Referencia del Archivo welch.\+h}
+\label{welch_8h}\index{welch.h@{welch.h}}
+
+
+Definición de funciones que calcula la Densidad Espectral de Potencia de un array complejo y genera sus frecuencias asociadas.  
+
+
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$complex.\+h$>$}\newline
+Dependencia gráfica adjunta para welch.\+h\+:
+% FIG 0
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
+% FIG 1
+\doxysubsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{welch_8h_a598a3330b3c21701223ee0ca14316eca}\label{welch_8h_a598a3330b3c21701223ee0ca14316eca}} 
+\#define {\bfseries PI}~3.\+14159265358979323846
+\end{DoxyCompactItemize}
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{welch_8h_a7782130f6fb79d8dd195716ae2e85281}{generate\+\_\+hamming\+\_\+window}} (double $\ast$window, int segment\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Genera una ventana de Hamming. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{welch_8h_af3147fb2cd8921c5ff4a6c12b82dc57d}\label{welch_8h_af3147fb2cd8921c5ff4a6c12b82dc57d}} 
+void {\bfseries welch\+\_\+psd\+\_\+complex} (complex double $\ast$signal, size\+\_\+t N\+\_\+signal, double fs, int segment\+\_\+length, double overlap, double $\ast$f\+\_\+out, double $\ast$P\+\_\+welch\+\_\+out)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Definición de funciones que calcula la Densidad Espectral de Potencia de un array complejo y genera sus frecuencias asociadas. 
+
+Esta función permite almacenar datos de frecuencias y densidades espectrales de potencia (P\+SD) en un archivo C\+SV con formato adecuado para análisis posterior. 
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{welch_8h_a7782130f6fb79d8dd195716ae2e85281}\label{welch_8h_a7782130f6fb79d8dd195716ae2e85281}} 
+\index{welch.h@{welch.h}!generate\_hamming\_window@{generate\_hamming\_window}}
+\index{generate\_hamming\_window@{generate\_hamming\_window}!welch.h@{welch.h}}
+\doxysubsubsection{\texorpdfstring{generate\_hamming\_window()}{generate\_hamming\_window()}}
+{\footnotesize\ttfamily void generate\+\_\+hamming\+\_\+window (\begin{DoxyParamCaption}\item[{double $\ast$}]{window,  }\item[{int}]{segment\+\_\+length }\end{DoxyParamCaption})}
+
+
+
+Genera una ventana de Hamming. 
+
+Esta función genera una ventana de Hamming de longitud {\ttfamily segment\+\_\+length} y almacena los valores en el arreglo {\ttfamily window}.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em window} & Un puntero al arreglo donde se almacenarán los valores de la ventana de Hamming. \\
+\hline
+{\em segment\+\_\+length} & La longitud del segmento para la ventana de Hamming. \\
+\hline
+\end{DoxyParams}

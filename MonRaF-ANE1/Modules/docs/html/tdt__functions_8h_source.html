@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>proyecto_ane: Fichero Fuente tdt_functions.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">proyecto_ane
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">tdt_functions.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="tdt__functions_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#ifndef ANALYZE_SIGNAL_H</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define ANALYZE_SIGNAL_H</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;math.h&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;complex.h&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define M_PI 3.14159265358979323846</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">double</span> <a class="code" href="tdt__functions_8h.html#ac5f0ac07d493c020301cfddfdd8bc834">c_n</a>(<span class="keywordtype">double</span>* Pxx, <span class="keywordtype">double</span>* f, <span class="keywordtype">int</span> f_low, <span class="keywordtype">int</span> f_high);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">double</span> <a class="code" href="tdt__functions_8h.html#a7f46e942d48cb4d5421e78960bdf55d6">mer</a>(<span class="keywordtype">int</span> f_low, <span class="keywordtype">int</span> f_high, <span class="keywordtype">double</span>* Pxx, <span class="keywordtype">int</span> N);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">void</span> <a class="code" href="tdt__functions_8h.html#adf577d2c5f9e3b1a74f020d8ce8702f0">analyze_signal</a>(<span class="keywordtype">double</span> frecuencia, <span class="keyword">const</span> <span class="keywordtype">char</span>* modulation, complex <span class="keywordtype">double</span>* data, <span class="keywordtype">size_t</span> data_len, <span class="keywordtype">double</span>* mer_value, <span class="keywordtype">double</span>* ber_value, <span class="keywordtype">double</span>* c_n_value, <span class="keywordtype">double</span>* signal_power);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keywordtype">void</span> <a class="code" href="tdt__functions_8h.html#ac5ee55a11c6ca26d3d91a5f7b7effa94">fftshift</a>(<span class="keywordtype">double</span>* input, <span class="keywordtype">double</span>* output, <span class="keywordtype">int</span> N);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">void</span> <a class="code" href="tdt__functions_8h.html#a66771dd4ab39e8da9a73991874e18c2d">linspace</a>(<span class="keywordtype">double</span> start, <span class="keywordtype">double</span> end, <span class="keywordtype">int</span> num, <span class="keywordtype">double</span>* array);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keywordtype">int</span> <a class="code" href="tdt__functions_8h.html#adfa798d538f0fb6d151f6bceef822a60">argmin_abs_difference</a>(<span class="keywordtype">double</span>* array, <span class="keywordtype">int</span> length, <span class="keywordtype">double</span> value);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keywordtype">double</span> <a class="code" href="tdt__functions_8h.html#a6ac2b0d722778e8c6b3aa19d46c5abd1">trapz</a>(<span class="keywordtype">double</span>* y, <span class="keywordtype">double</span>* x, <span class="keywordtype">int</span> start, <span class="keywordtype">int</span> end);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keywordtype">double</span> <a class="code" href="tdt__functions_8h.html#a3933ac4594176a9427495b13f94da00a">median</a>(<span class="keywordtype">double</span>* array, <span class="keywordtype">int</span> start, <span class="keywordtype">int</span> end);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="keywordtype">int</span> <a class="code" href="tdt__functions_8h.html#ab14b7f5dc01c12685f12b0909b19c44c">compare_doubles</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* a, <span class="keyword">const</span> <span class="keywordtype">void</span>* b);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keyword">static</span> <span class="keywordtype">double</span> integrand(<span class="keywordtype">double</span> t);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keywordtype">double</span> <a class="code" href="tdt__functions_8h.html#a142f3d4fe51a1d93971f0a614fa46c5e">erfc_manual</a>(<span class="keywordtype">double</span> x, <span class="keywordtype">int</span> num_steps);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="keywordtype">double</span> <a class="code" href="tdt__functions_8h.html#a32fde2fcd8a623575b3a5684883d1c2b">Q</a>(<span class="keywordtype">double</span> x);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="keywordtype">double</span> <a class="code" href="tdt__functions_8h.html#a0aa6715defe9e7f8cf6c994f10a8ab01">calculate_BER_from_snr</a>(<span class="keywordtype">double</span> SNR, <span class="keywordtype">float</span> M);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">#endif // ANALYZE_SIGNAL_H</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="atdt__functions_8h_html_adf577d2c5f9e3b1a74f020d8ce8702f0"><div class="ttname"><a href="tdt__functions_8h.html#adf577d2c5f9e3b1a74f020d8ce8702f0">analyze_signal</a></div><div class="ttdeci">void analyze_signal(double frecuencia, const char *modulation, complex double *data, size_t data_len, double *mer_value, double *ber_value, double *c_n_value, double *signal_power)</div><div class="ttdoc">Analiza señales IQ para calcular parámetros como MER, BER y C/N.</div><div class="ttdef"><b>Definition:</b> tdt_functions.c:59</div></div>
+<div class="ttc" id="atdt__functions_8h_html_a142f3d4fe51a1d93971f0a614fa46c5e"><div class="ttname"><a href="tdt__functions_8h.html#a142f3d4fe51a1d93971f0a614fa46c5e">erfc_manual</a></div><div class="ttdeci">double erfc_manual(double x, int num_steps)</div><div class="ttdoc">Calcula la función de error complementaria (erfc) manualmente.</div><div class="ttdef"><b>Definition:</b> tdt_functions.c:213</div></div>
+<div class="ttc" id="atdt__functions_8h_html_a66771dd4ab39e8da9a73991874e18c2d"><div class="ttname"><a href="tdt__functions_8h.html#a66771dd4ab39e8da9a73991874e18c2d">linspace</a></div><div class="ttdeci">void linspace(double start, double end, int num, double *array)</div><div class="ttdoc">Genera un vector de valores espaciados linealmente.</div><div class="ttdef"><b>Definition:</b> tdt_functions.c:145</div></div>
+<div class="ttc" id="atdt__functions_8h_html_a6ac2b0d722778e8c6b3aa19d46c5abd1"><div class="ttname"><a href="tdt__functions_8h.html#a6ac2b0d722778e8c6b3aa19d46c5abd1">trapz</a></div><div class="ttdeci">double trapz(double *y, double *x, int start, int end)</div><div class="ttdoc">Calcula la integral aproximada usando la regla del trapecio.</div><div class="ttdef"><b>Definition:</b> tdt_functions.c:167</div></div>
+<div class="ttc" id="atdt__functions_8h_html_ac5ee55a11c6ca26d3d91a5f7b7effa94"><div class="ttname"><a href="tdt__functions_8h.html#ac5ee55a11c6ca26d3d91a5f7b7effa94">fftshift</a></div><div class="ttdeci">void fftshift(double *input, double *output, int N)</div><div class="ttdoc">Realiza un desplazamiento FFT para reordenar el espectro.</div><div class="ttdef"><b>Definition:</b> tdt_functions.c:137</div></div>
+<div class="ttc" id="atdt__functions_8h_html_a3933ac4594176a9427495b13f94da00a"><div class="ttname"><a href="tdt__functions_8h.html#a3933ac4594176a9427495b13f94da00a">median</a></div><div class="ttdeci">double median(double *array, int start, int end)</div><div class="ttdoc">Calcula la mediana de un subrango en un array.</div><div class="ttdef"><b>Definition:</b> tdt_functions.c:177</div></div>
+<div class="ttc" id="atdt__functions_8h_html_ab14b7f5dc01c12685f12b0909b19c44c"><div class="ttname"><a href="tdt__functions_8h.html#ab14b7f5dc01c12685f12b0909b19c44c">compare_doubles</a></div><div class="ttdeci">int compare_doubles(const void *a, const void *b)</div><div class="ttdoc">Comparador para ordenar valores de tipo double.</div><div class="ttdef"><b>Definition:</b> tdt_functions.c:200</div></div>
+<div class="ttc" id="atdt__functions_8h_html_a0aa6715defe9e7f8cf6c994f10a8ab01"><div class="ttname"><a href="tdt__functions_8h.html#a0aa6715defe9e7f8cf6c994f10a8ab01">calculate_BER_from_snr</a></div><div class="ttdeci">double calculate_BER_from_snr(double SNR, float M)</div><div class="ttdoc">Calcula la BER basada en el SNR y la modulación.</div><div class="ttdef"><b>Definition:</b> tdt_functions.c:233</div></div>
+<div class="ttc" id="atdt__functions_8h_html_a7f46e942d48cb4d5421e78960bdf55d6"><div class="ttname"><a href="tdt__functions_8h.html#a7f46e942d48cb4d5421e78960bdf55d6">mer</a></div><div class="ttdeci">double mer(int f_low, int f_high, double *Pxx, int N)</div><div class="ttdoc">Calcula la Modulation Error Ratio (MER).</div><div class="ttdef"><b>Definition:</b> tdt_functions.c:33</div></div>
+<div class="ttc" id="atdt__functions_8h_html_ac5f0ac07d493c020301cfddfdd8bc834"><div class="ttname"><a href="tdt__functions_8h.html#ac5f0ac07d493c020301cfddfdd8bc834">c_n</a></div><div class="ttdeci">double c_n(double *Pxx, double *f, int f_low, int f_high)</div><div class="ttdoc">Calcula la relación portadora/ruido (C/N) y la potencia de señal.</div><div class="ttdef"><b>Definition:</b> tdt_functions.c:25</div></div>
+<div class="ttc" id="atdt__functions_8h_html_a32fde2fcd8a623575b3a5684883d1c2b"><div class="ttname"><a href="tdt__functions_8h.html#a32fde2fcd8a623575b3a5684883d1c2b">Q</a></div><div class="ttdeci">double Q(double x)</div><div class="ttdoc">Calcula la función Q para un valor dado.</div><div class="ttdef"><b>Definition:</b> tdt_functions.c:228</div></div>
+<div class="ttc" id="atdt__functions_8h_html_adfa798d538f0fb6d151f6bceef822a60"><div class="ttname"><a href="tdt__functions_8h.html#adfa798d538f0fb6d151f6bceef822a60">argmin_abs_difference</a></div><div class="ttdeci">int argmin_abs_difference(double *array, int length, double value)</div><div class="ttdoc">Encuentra el índice del valor más cercano a uno dado en un array.</div><div class="ttdef"><b>Definition:</b> tdt_functions.c:153</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

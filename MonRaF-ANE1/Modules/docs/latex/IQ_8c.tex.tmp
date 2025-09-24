@@ -1,0 +1,113 @@
+\doxysection{Referencia del archivo IQ.\+c}
+\hypertarget{IQ_8c}{}\label{IQ_8c}\index{IQ.c@{IQ.c}}
+
+
+Implementación de funciones relacionadas con la lectura de archivos CS8, manejo de bandas y creación de vectores IQ.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$complex.\+h$>$}\newline
+{\ttfamily \#include "{}IQ.\+h"{}}\newline
+Gráfico de dependencias incluidas en IQ.\+c\+:
+% FIG 0
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+int8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{IQ_8c_a35642d03ff1d90c6db92bc17f9059cc1}{read\+\_\+\+CS8}} (uint8\+\_\+t file\+\_\+sample, size\+\_\+t \texorpdfstring{$\ast$}{*}file\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Lee un archivo con extensión CS8 y carga sus datos en un buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{IQ_8c_af8075ba22c4989cd9694d6fc0c9fc041}{delete\+\_\+\+CS8}} (uint8\+\_\+t file\+\_\+sample)
+\begin{DoxyCompactList}\small\item\em Elimina un archivo CS8 dado. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{IQ_8c_a120dd1d1d3a0ec0ef01e937af175de93}{load\+\_\+bands}} (uint8\+\_\+t bands, double \texorpdfstring{$\ast$}{*}frequencies, double \texorpdfstring{$\ast$}{*}bandwidths)
+\begin{DoxyCompactList}\small\item\em Carga las frecuencias y anchos de banda de un archivo CSV correspondiente a una banda seleccionada. \end{DoxyCompactList}\item 
+complex double \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{IQ_8c_a357e16e9451b3214ecfa5e507e81f073}{Vector\+\_\+\+BIN}} (int8\+\_\+t \texorpdfstring{$\ast$}{*}raw\+Vector, size\+\_\+t length, size\+\_\+t \texorpdfstring{$\ast$}{*}num\+\_\+samples)
+\begin{DoxyCompactList}\small\item\em Convierte un arreglo de datos en formato CS8 a un vector de números complejos IQ. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Implementación de funciones relacionadas con la lectura de archivos CS8, manejo de bandas y creación de vectores IQ. 
+
+Este archivo contiene la implementación de funciones utilizadas para trabajar con archivos CS8, cargar bandas de frecuencias y construir vectores de datos complejos (IQ). 
+
+\doxysubsection{Documentación de funciones}
+\Hypertarget{IQ_8c_af8075ba22c4989cd9694d6fc0c9fc041}\index{IQ.c@{IQ.c}!delete\_CS8@{delete\_CS8}}
+\index{delete\_CS8@{delete\_CS8}!IQ.c@{IQ.c}}
+\doxysubsubsection{\texorpdfstring{delete\_CS8()}{delete\_CS8()}}
+{\footnotesize\ttfamily \label{IQ_8c_af8075ba22c4989cd9694d6fc0c9fc041} 
+void delete\+\_\+\+CS8 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{file\+\_\+sample}{}\end{DoxyParamCaption})}
+
+
+
+Elimina un archivo CS8 dado. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em file\+\_\+sample} & El número del archivo a eliminar. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{IQ_8c_a120dd1d1d3a0ec0ef01e937af175de93}\index{IQ.c@{IQ.c}!load\_bands@{load\_bands}}
+\index{load\_bands@{load\_bands}!IQ.c@{IQ.c}}
+\doxysubsubsection{\texorpdfstring{load\_bands()}{load\_bands()}}
+{\footnotesize\ttfamily \label{IQ_8c_a120dd1d1d3a0ec0ef01e937af175de93} 
+int load\+\_\+bands (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{bands}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{frequencies}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{bandwidths}{}\end{DoxyParamCaption})}
+
+
+
+Carga las frecuencias y anchos de banda de un archivo CSV correspondiente a una banda seleccionada. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em bands} & La banda de frecuencias a cargar (VHF1, VHF2, etc.). \\
+\hline
+{\em frequencies} & Puntero a un arreglo donde se almacenarán las frecuencias de la banda. \\
+\hline
+{\em bandwidths} & Puntero a un arreglo donde se almacenarán los anchos de banda de la banda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+int El número de filas leídas desde el archivo CSV, o 0 si ocurrió un error. 
+\end{DoxyReturn}
+\Hypertarget{IQ_8c_a35642d03ff1d90c6db92bc17f9059cc1}\index{IQ.c@{IQ.c}!read\_CS8@{read\_CS8}}
+\index{read\_CS8@{read\_CS8}!IQ.c@{IQ.c}}
+\doxysubsubsection{\texorpdfstring{read\_CS8()}{read\_CS8()}}
+{\footnotesize\ttfamily \label{IQ_8c_a35642d03ff1d90c6db92bc17f9059cc1} 
+int8\+\_\+t \texorpdfstring{$\ast$}{*} read\+\_\+\+CS8 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{file\+\_\+sample}{, }\item[{size\+\_\+t \texorpdfstring{$\ast$}{*}}]{file\+\_\+size}{}\end{DoxyParamCaption})}
+
+
+
+Lee un archivo con extensión CS8 y carga sus datos en un buffer. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em file\+\_\+sample} & El número del archivo a leer, representado como un número entero sin signo. \\
+\hline
+{\em file\+\_\+size} & Puntero donde se almacenará el tamaño del archivo leído. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+int8\+\_\+t\texorpdfstring{$\ast$}{*} Un puntero al arreglo de datos leídos desde el archivo. Retorna {\ttfamily NULL} si hubo algún error. 
+\end{DoxyReturn}
+\Hypertarget{IQ_8c_a357e16e9451b3214ecfa5e507e81f073}\index{IQ.c@{IQ.c}!Vector\_BIN@{Vector\_BIN}}
+\index{Vector\_BIN@{Vector\_BIN}!IQ.c@{IQ.c}}
+\doxysubsubsection{\texorpdfstring{Vector\_BIN()}{Vector\_BIN()}}
+{\footnotesize\ttfamily \label{IQ_8c_a357e16e9451b3214ecfa5e507e81f073} 
+complex double \texorpdfstring{$\ast$}{*} Vector\+\_\+\+BIN (\begin{DoxyParamCaption}\item[{int8\+\_\+t \texorpdfstring{$\ast$}{*}}]{raw\+Vector}{, }\item[{size\+\_\+t}]{length}{, }\item[{size\+\_\+t \texorpdfstring{$\ast$}{*}}]{num\+\_\+samples}{}\end{DoxyParamCaption})}
+
+
+
+Convierte un arreglo de datos en formato CS8 a un vector de números complejos IQ. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em raw\+Vector} & Un puntero al arreglo de datos en formato CS8. \\
+\hline
+{\em length} & La longitud del arreglo {\ttfamily raw\+Vector}. \\
+\hline
+{\em num\+\_\+samples} & Puntero donde se almacenará el número de muestras convertidas a números complejos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+complex double\texorpdfstring{$\ast$}{*} Un puntero a un arreglo de números complejos {\ttfamily complex double}, representando el vector IQ. 
+\end{DoxyReturn}

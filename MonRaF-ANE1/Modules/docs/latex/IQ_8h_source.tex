@@ -1,0 +1,34 @@
+\doxysection{IQ.\+h}
+\hypertarget{IQ_8h_source}{}\label{IQ_8h_source}\mbox{\hyperlink{IQ_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ IQ\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ IQ\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <complex.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ MAX\_BAND\_SIZE\ 50\ }}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{IQ_8h_a34c94fe7ef28862625f13be01500d4a3}{BANDS}}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{IQ_8h_a34c94fe7ef28862625f13be01500d4a3a1a24d7c484bd9b575751e0bbcc90e2c7}{VHF1}},\ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{IQ_8h_a34c94fe7ef28862625f13be01500d4a3a5bd97f47e41473f1efe71d6b5e4bfd93}{VHF2}},\ }
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{IQ_8h_a34c94fe7ef28862625f13be01500d4a3afb8b8054753956675815c70e3158d7d9}{VHF3}},\ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{IQ_8h_a34c94fe7ef28862625f13be01500d4a3acb545b8967e3fee8d81a2f6a7a3008e4}{UHF1}},\ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{IQ_8h_a34c94fe7ef28862625f13be01500d4a3a903e66f3cea5fca9f4dd3e3168a0705b}{UHF2}},\ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{IQ_8h_a34c94fe7ef28862625f13be01500d4a3aaddc1348d6a45857d895e8f04de2d6c9}{UHF3}},\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{IQ_8h_a34c94fe7ef28862625f13be01500d4a3ae85239e2c759f26fb9432b5e6eef9c68}{SHF1}},\ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{IQ_8h_a34c94fe7ef28862625f13be01500d4a3a01779394071064935353b955d8646385}{SHF2}}\ \ }
+\DoxyCodeLine{00031\ \}\ bands\_t;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00045\ int8\_t*\ \mbox{\hyperlink{IQ_8h_a35642d03ff1d90c6db92bc17f9059cc1}{read\_CS8}}(uint8\_t\ file\_sample,\ \textcolor{keywordtype}{size\_t}*\ file\_size);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{IQ_8h_af8075ba22c4989cd9694d6fc0c9fc041}{delete\_CS8}}(uint8\_t\ file\_sample);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00070\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{IQ_8h_a120dd1d1d3a0ec0ef01e937af175de93}{load\_bands}}(uint8\_t\ bands,\ \textcolor{keywordtype}{double}*\ frequencies,\ \textcolor{keywordtype}{double}*\ bandwidths);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00086\ complex\ \textcolor{keywordtype}{double}*\ \mbox{\hyperlink{IQ_8h_a357e16e9451b3214ecfa5e507e81f073}{Vector\_BIN}}(int8\_t\ *rawVector,\ \textcolor{keywordtype}{size\_t}\ length,\ \textcolor{keywordtype}{size\_t}*\ num\_samples);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ IQ\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,152 @@
+\hypertarget{bacn__RF_8c}{}\doxysection{Referencia del Archivo bacn\+\_\+\+R\+F.\+c}
+\label{bacn__RF_8c}\index{bacn\_RF.c@{bacn\_RF.c}}
+
+
+Implementación de captura de datos IQ con Hack\+RF.  
+
+
+{\ttfamily \#include $<$libhackrf/hackrf.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}bacn\+\_\+\+R\+F.\+h\char`\"{}}\newline
+Dependencia gráfica adjunta para bacn\+\_\+\+R\+F.\+c\+:
+% FIG 0
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{bacn__RF_8c_af0ce47b78049d707a5f9c60b6809ffd2}{stop\+\_\+main\+\_\+loop}} (void)
+\begin{DoxyCompactList}\small\item\em Detiene el bucle principal de captura. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{bacn__RF_8c_a9c84bce41e700e6cf9ecdc396add709b}{rx\+\_\+callback}} (hackrf\+\_\+transfer $\ast$transfer)
+\begin{DoxyCompactList}\small\item\em Callback para manejar los datos recibidos del Hack\+RF. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bacn__RF_8c_ade0dfc02a379113509b1bbbb661ddc8a}{sigint\+\_\+callback\+\_\+handler}} (int signum)
+\begin{DoxyCompactList}\small\item\em Manejador de la señal S\+I\+G\+I\+NT (Ctrl+C). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bacn__RF_8c_a246c2863ad984c4fea39ec1a2aebf1e1}{sigalrm\+\_\+callback\+\_\+handler}} ()
+\begin{DoxyCompactList}\small\item\em Manejador para la señal S\+I\+G\+A\+L\+RM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{bacn__RF_8c_ad4823fd331e6ba0ca7b9eaaa14ac1922}{get\+Samples}} (int64\+\_\+t \mbox{\hyperlink{bacn__RF_8c_a410c347e43a0f96446f28a81f5f3b494}{lo\+\_\+freq}}, int64\+\_\+t \mbox{\hyperlink{bacn__RF_8c_ab5c8e6fb8c5cb14072a051b77c53c0ce}{hi\+\_\+freq}}, \mbox{\hyperlink{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6}{transceiver\+\_\+mode\+\_\+t}} transceiver\+\_\+mode, uint16\+\_\+t lna\+\_\+gain, uint16\+\_\+t vga\+\_\+gain)
+\begin{DoxyCompactList}\small\item\em Configura y ejecuta la adquisición de muestras con Hack\+RF. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{bacn__RF_8c_a702945180aa732857b380a007a7e2a21}\label{bacn__RF_8c_a702945180aa732857b380a007a7e2a21}} 
+F\+I\+LE $\ast$ \mbox{\hyperlink{bacn__RF_8c_a702945180aa732857b380a007a7e2a21}{file}} = N\+U\+LL
+\begin{DoxyCompactList}\small\item\em Archivo para almacenar los datos de salida. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bacn__RF_8c_a58d75e0641b680b3eb2c270de5840f72}\label{bacn__RF_8c_a58d75e0641b680b3eb2c270de5840f72}} 
+volatile uint32\+\_\+t \mbox{\hyperlink{bacn__RF_8c_a58d75e0641b680b3eb2c270de5840f72}{byte\+\_\+count}} = 0
+\begin{DoxyCompactList}\small\item\em Contador de bytes transferidos. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bacn__RF_8c_a79e529ba48e0bdac28d6c64f739610c7}\label{bacn__RF_8c_a79e529ba48e0bdac28d6c64f739610c7}} 
+uint64\+\_\+t \mbox{\hyperlink{bacn__RF_8c_a79e529ba48e0bdac28d6c64f739610c7}{stream\+\_\+size}} = 0
+\begin{DoxyCompactList}\small\item\em Tamaño del buffer de streaming. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bacn__RF_8c_ae4e0f2b54365780da49a8e82b31b2cb9}\label{bacn__RF_8c_ae4e0f2b54365780da49a8e82b31b2cb9}} 
+uint32\+\_\+t \mbox{\hyperlink{bacn__RF_8c_ae4e0f2b54365780da49a8e82b31b2cb9}{stream\+\_\+head}} = 0
+\begin{DoxyCompactList}\small\item\em Puntero al inicio del buffer circular de streaming. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bacn__RF_8c_add9deb04de24164ee1e4547fa632697e}\label{bacn__RF_8c_add9deb04de24164ee1e4547fa632697e}} 
+uint32\+\_\+t \mbox{\hyperlink{bacn__RF_8c_add9deb04de24164ee1e4547fa632697e}{stream\+\_\+tail}} = 0
+\begin{DoxyCompactList}\small\item\em Puntero al final del buffer circular de streaming. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bacn__RF_8c_a3c5f3b9408dc0350c1b961edfe20560d}\label{bacn__RF_8c_a3c5f3b9408dc0350c1b961edfe20560d}} 
+uint32\+\_\+t \mbox{\hyperlink{bacn__RF_8c_a3c5f3b9408dc0350c1b961edfe20560d}{stream\+\_\+drop}} = 0
+\begin{DoxyCompactList}\small\item\em Número de streams descartados. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bacn__RF_8c_a9da89e7a3332a6fcf1765100a7adb9a7}\label{bacn__RF_8c_a9da89e7a3332a6fcf1765100a7adb9a7}} 
+uint8\+\_\+t $\ast$ \mbox{\hyperlink{bacn__RF_8c_a9da89e7a3332a6fcf1765100a7adb9a7}{stream\+\_\+buf}} = N\+U\+LL
+\begin{DoxyCompactList}\small\item\em Buffer para almacenamiento temporal de datos de streaming. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bacn__RF_8c_a2bfb83d88c1cc9a1d0eacf86d6d003f8}\label{bacn__RF_8c_a2bfb83d88c1cc9a1d0eacf86d6d003f8}} 
+bool \mbox{\hyperlink{bacn__RF_8c_a2bfb83d88c1cc9a1d0eacf86d6d003f8}{limit\+\_\+num\+\_\+samples}} = true
+\begin{DoxyCompactList}\small\item\em Flag para limitar la cantidad de muestras transferidas. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bacn__RF_8c_acd8bedc89cc31bbca8a46c383e2d14f0}\label{bacn__RF_8c_acd8bedc89cc31bbca8a46c383e2d14f0}} 
+size\+\_\+t \mbox{\hyperlink{bacn__RF_8c_acd8bedc89cc31bbca8a46c383e2d14f0}{bytes\+\_\+to\+\_\+xfer}} = 0
+\begin{DoxyCompactList}\small\item\em Bytes restantes para transferir. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bacn__RF_8c_a410c347e43a0f96446f28a81f5f3b494}\label{bacn__RF_8c_a410c347e43a0f96446f28a81f5f3b494}} 
+int64\+\_\+t \mbox{\hyperlink{bacn__RF_8c_a410c347e43a0f96446f28a81f5f3b494}{lo\+\_\+freq}} = 0
+\begin{DoxyCompactList}\small\item\em Frecuencia inicial para el barrido. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bacn__RF_8c_ab5c8e6fb8c5cb14072a051b77c53c0ce}\label{bacn__RF_8c_ab5c8e6fb8c5cb14072a051b77c53c0ce}} 
+int64\+\_\+t \mbox{\hyperlink{bacn__RF_8c_ab5c8e6fb8c5cb14072a051b77c53c0ce}{hi\+\_\+freq}} = 0
+\begin{DoxyCompactList}\small\item\em Frecuencia final para el barrido. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Implementación de captura de datos IQ con Hack\+RF. 
+
+Este archivo contiene la implementación de funciones para manejar la captura de datos IQ utilizando un dispositivo Hack\+RF. Incluye manejo de señales, configuración del dispositivo y almacenamiento de datos en archivos binarios. 
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{bacn__RF_8c_ad4823fd331e6ba0ca7b9eaaa14ac1922}\label{bacn__RF_8c_ad4823fd331e6ba0ca7b9eaaa14ac1922}} 
+\index{bacn\_RF.c@{bacn\_RF.c}!getSamples@{getSamples}}
+\index{getSamples@{getSamples}!bacn\_RF.c@{bacn\_RF.c}}
+\doxysubsubsection{\texorpdfstring{getSamples()}{getSamples()}}
+{\footnotesize\ttfamily int get\+Samples (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{lo\+\_\+freq,  }\item[{int64\+\_\+t}]{hi\+\_\+freq,  }\item[{\mbox{\hyperlink{bacn__RF_8h_a9bd5dc8a36f3ae4bc33439ae69d0cba6}{transceiver\+\_\+mode\+\_\+t}}}]{transceiver\+\_\+mode,  }\item[{uint16\+\_\+t}]{lna\+\_\+gain,  }\item[{uint16\+\_\+t}]{vga\+\_\+gain }\end{DoxyParamCaption})}
+
+
+
+Configura y ejecuta la adquisición de muestras con Hack\+RF. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em lo\+\_\+freq} & Frecuencia inicial en Hz. \\
+\hline
+{\em hi\+\_\+freq} & Frecuencia final en Hz. \\
+\hline
+{\em transceiver\+\_\+mode} & Modo de operación del transceptor. \\
+\hline
+{\em lna\+\_\+gain} & Ganancia del amplificador de bajo ruido (L\+NA) en dB. \\
+\hline
+{\em vga\+\_\+gain} & Ganancia del amplificador de ganancia variable (V\+GA) en dB. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+int Devuelve el número de frecuencias procesadas o -\/1 en caso de error. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{bacn__RF_8c_a9c84bce41e700e6cf9ecdc396add709b}\label{bacn__RF_8c_a9c84bce41e700e6cf9ecdc396add709b}} 
+\index{bacn\_RF.c@{bacn\_RF.c}!rx\_callback@{rx\_callback}}
+\index{rx\_callback@{rx\_callback}!bacn\_RF.c@{bacn\_RF.c}}
+\doxysubsubsection{\texorpdfstring{rx\_callback()}{rx\_callback()}}
+{\footnotesize\ttfamily int rx\+\_\+callback (\begin{DoxyParamCaption}\item[{hackrf\+\_\+transfer $\ast$}]{transfer }\end{DoxyParamCaption})}
+
+
+
+Callback para manejar los datos recibidos del Hack\+RF. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em transfer} & Estructura de transferencia de Hack\+RF que contiene los datos recibidos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+int Devuelve 0 si el procesamiento fue exitoso, -\/1 en caso de error. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{bacn__RF_8c_a246c2863ad984c4fea39ec1a2aebf1e1}\label{bacn__RF_8c_a246c2863ad984c4fea39ec1a2aebf1e1}} 
+\index{bacn\_RF.c@{bacn\_RF.c}!sigalrm\_callback\_handler@{sigalrm\_callback\_handler}}
+\index{sigalrm\_callback\_handler@{sigalrm\_callback\_handler}!bacn\_RF.c@{bacn\_RF.c}}
+\doxysubsubsection{\texorpdfstring{sigalrm\_callback\_handler()}{sigalrm\_callback\_handler()}}
+{\footnotesize\ttfamily void sigalrm\+\_\+callback\+\_\+handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Manejador para la señal S\+I\+G\+A\+L\+RM. 
+
+Manejador de la señal S\+I\+G\+A\+L\+RM. \mbox{\Hypertarget{bacn__RF_8c_ade0dfc02a379113509b1bbbb661ddc8a}\label{bacn__RF_8c_ade0dfc02a379113509b1bbbb661ddc8a}} 
+\index{bacn\_RF.c@{bacn\_RF.c}!sigint\_callback\_handler@{sigint\_callback\_handler}}
+\index{sigint\_callback\_handler@{sigint\_callback\_handler}!bacn\_RF.c@{bacn\_RF.c}}
+\doxysubsubsection{\texorpdfstring{sigint\_callback\_handler()}{sigint\_callback\_handler()}}
+{\footnotesize\ttfamily void sigint\+\_\+callback\+\_\+handler (\begin{DoxyParamCaption}\item[{int}]{signum }\end{DoxyParamCaption})}
+
+
+
+Manejador de la señal S\+I\+G\+I\+NT (Ctrl+C). 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em signum} & Número de la señal capturada. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bacn__RF_8c_af0ce47b78049d707a5f9c60b6809ffd2}\label{bacn__RF_8c_af0ce47b78049d707a5f9c60b6809ffd2}} 
+\index{bacn\_RF.c@{bacn\_RF.c}!stop\_main\_loop@{stop\_main\_loop}}
+\index{stop\_main\_loop@{stop\_main\_loop}!bacn\_RF.c@{bacn\_RF.c}}
+\doxysubsubsection{\texorpdfstring{stop\_main\_loop()}{stop\_main\_loop()}}
+{\footnotesize\ttfamily void stop\+\_\+main\+\_\+loop (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Detiene el bucle principal de captura. 
+
+Detiene el bucle principal. 

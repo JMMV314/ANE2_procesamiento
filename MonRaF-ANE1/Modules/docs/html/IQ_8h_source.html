@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>proyecto_ane: Fichero Fuente IQ.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">proyecto_ane
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">IQ.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="IQ_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef IQ_H</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define IQ_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;complex.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="IQ_8h.html#a9177b9ea6dad4bc2311a47f22701f8d7">   14</a></span>&#160;<span class="preprocessor">#define MAX_BAND_SIZE 50 </span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor"></span> </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3">   22</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3">BANDS</a> {</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3a1a24d7c484bd9b575751e0bbcc90e2c7">   23</a></span>&#160;    <a class="code" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3a1a24d7c484bd9b575751e0bbcc90e2c7">VHF1</a>, </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3a5bd97f47e41473f1efe71d6b5e4bfd93">   24</a></span>&#160;    <a class="code" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3a5bd97f47e41473f1efe71d6b5e4bfd93">VHF2</a>, </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3afb8b8054753956675815c70e3158d7d9">   25</a></span>&#160;    <a class="code" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3afb8b8054753956675815c70e3158d7d9">VHF3</a>, </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3acb545b8967e3fee8d81a2f6a7a3008e4">   26</a></span>&#160;    <a class="code" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3acb545b8967e3fee8d81a2f6a7a3008e4">UHF1</a>, </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3a903e66f3cea5fca9f4dd3e3168a0705b">   27</a></span>&#160;    <a class="code" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3a903e66f3cea5fca9f4dd3e3168a0705b">UHF2</a>, </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3aaddc1348d6a45857d895e8f04de2d6c9">   28</a></span>&#160;    <a class="code" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3aaddc1348d6a45857d895e8f04de2d6c9">UHF3</a>, </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3ae85239e2c759f26fb9432b5e6eef9c68">   29</a></span>&#160;    <a class="code" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3ae85239e2c759f26fb9432b5e6eef9c68">SHF1</a>, </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3a01779394071064935353b955d8646385">   30</a></span>&#160;    <a class="code" href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3a01779394071064935353b955d8646385">SHF2</a>  </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;} bands_t;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;int8_t* <a class="code" href="IQ_8h.html#ae91345016075644ad6920de3d47a90c7">read_CS8</a>(uint8_t file_sample, <span class="keywordtype">size_t</span>* file_size);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="IQ_8h.html#af8075ba22c4989cd9694d6fc0c9fc041">delete_CS8</a>(uint8_t file_sample);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">int</span> <a class="code" href="IQ_8h.html#a120dd1d1d3a0ec0ef01e937af175de93">load_bands</a>(uint8_t bands, <span class="keywordtype">double</span>* frequencies, <span class="keywordtype">double</span>* bandwidths);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;complex <span class="keywordtype">double</span>* <a class="code" href="IQ_8h.html#a5839667c97648d17f166dedc9f3df44c">Vector_BIN</a>(int8_t *rawVector, <span class="keywordtype">size_t</span> length, <span class="keywordtype">size_t</span>* num_samples);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#endif // IQ_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aIQ_8h_html_a34c94fe7ef28862625f13be01500d4a3acb545b8967e3fee8d81a2f6a7a3008e4"><div class="ttname"><a href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3acb545b8967e3fee8d81a2f6a7a3008e4">UHF1</a></div><div class="ttdeci">@ UHF1</div><div class="ttdoc">Banda UHF1.</div><div class="ttdef"><b>Definition:</b> IQ.h:26</div></div>
+<div class="ttc" id="aIQ_8h_html_a34c94fe7ef28862625f13be01500d4a3ae85239e2c759f26fb9432b5e6eef9c68"><div class="ttname"><a href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3ae85239e2c759f26fb9432b5e6eef9c68">SHF1</a></div><div class="ttdeci">@ SHF1</div><div class="ttdoc">Banda SHF1.</div><div class="ttdef"><b>Definition:</b> IQ.h:29</div></div>
+<div class="ttc" id="aIQ_8h_html_a34c94fe7ef28862625f13be01500d4a3a1a24d7c484bd9b575751e0bbcc90e2c7"><div class="ttname"><a href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3a1a24d7c484bd9b575751e0bbcc90e2c7">VHF1</a></div><div class="ttdeci">@ VHF1</div><div class="ttdoc">Banda VHF1.</div><div class="ttdef"><b>Definition:</b> IQ.h:23</div></div>
+<div class="ttc" id="aIQ_8h_html_a34c94fe7ef28862625f13be01500d4a3afb8b8054753956675815c70e3158d7d9"><div class="ttname"><a href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3afb8b8054753956675815c70e3158d7d9">VHF3</a></div><div class="ttdeci">@ VHF3</div><div class="ttdoc">Banda VHF3.</div><div class="ttdef"><b>Definition:</b> IQ.h:25</div></div>
+<div class="ttc" id="aIQ_8h_html_af8075ba22c4989cd9694d6fc0c9fc041"><div class="ttname"><a href="IQ_8h.html#af8075ba22c4989cd9694d6fc0c9fc041">delete_CS8</a></div><div class="ttdeci">void delete_CS8(uint8_t file_sample)</div><div class="ttdoc">Elimina un archivo CS8 dado.</div><div class="ttdef"><b>Definition:</b> IQ.c:59</div></div>
+<div class="ttc" id="aIQ_8h_html_a34c94fe7ef28862625f13be01500d4a3"><div class="ttname"><a href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3">BANDS</a></div><div class="ttdeci">BANDS</div><div class="ttdoc">Enumeración de las bandas disponibles.</div><div class="ttdef"><b>Definition:</b> IQ.h:22</div></div>
+<div class="ttc" id="aIQ_8h_html_a120dd1d1d3a0ec0ef01e937af175de93"><div class="ttname"><a href="IQ_8h.html#a120dd1d1d3a0ec0ef01e937af175de93">load_bands</a></div><div class="ttdeci">int load_bands(uint8_t bands, double *frequencies, double *bandwidths)</div><div class="ttdoc">Carga las frecuencias y anchos de banda de un archivo CSV correspondiente a una banda seleccionada.</div><div class="ttdef"><b>Definition:</b> IQ.c:73</div></div>
+<div class="ttc" id="aIQ_8h_html_a34c94fe7ef28862625f13be01500d4a3a5bd97f47e41473f1efe71d6b5e4bfd93"><div class="ttname"><a href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3a5bd97f47e41473f1efe71d6b5e4bfd93">VHF2</a></div><div class="ttdeci">@ VHF2</div><div class="ttdoc">Banda VHF2.</div><div class="ttdef"><b>Definition:</b> IQ.h:24</div></div>
+<div class="ttc" id="aIQ_8h_html_a5839667c97648d17f166dedc9f3df44c"><div class="ttname"><a href="IQ_8h.html#a5839667c97648d17f166dedc9f3df44c">Vector_BIN</a></div><div class="ttdeci">complex double * Vector_BIN(int8_t *rawVector, size_t length, size_t *num_samples)</div><div class="ttdoc">Convierte un arreglo de datos en formato CS8 a un vector de números complejos IQ.</div><div class="ttdef"><b>Definition:</b> IQ.c:119</div></div>
+<div class="ttc" id="aIQ_8h_html_a34c94fe7ef28862625f13be01500d4a3a01779394071064935353b955d8646385"><div class="ttname"><a href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3a01779394071064935353b955d8646385">SHF2</a></div><div class="ttdeci">@ SHF2</div><div class="ttdoc">Banda SHF2.</div><div class="ttdef"><b>Definition:</b> IQ.h:30</div></div>
+<div class="ttc" id="aIQ_8h_html_a34c94fe7ef28862625f13be01500d4a3a903e66f3cea5fca9f4dd3e3168a0705b"><div class="ttname"><a href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3a903e66f3cea5fca9f4dd3e3168a0705b">UHF2</a></div><div class="ttdeci">@ UHF2</div><div class="ttdoc">Banda UHF2.</div><div class="ttdef"><b>Definition:</b> IQ.h:27</div></div>
+<div class="ttc" id="aIQ_8h_html_a34c94fe7ef28862625f13be01500d4a3aaddc1348d6a45857d895e8f04de2d6c9"><div class="ttname"><a href="IQ_8h.html#a34c94fe7ef28862625f13be01500d4a3aaddc1348d6a45857d895e8f04de2d6c9">UHF3</a></div><div class="ttdeci">@ UHF3</div><div class="ttdoc">Banda UHF3.</div><div class="ttdef"><b>Definition:</b> IQ.h:28</div></div>
+<div class="ttc" id="aIQ_8h_html_ae91345016075644ad6920de3d47a90c7"><div class="ttname"><a href="IQ_8h.html#ae91345016075644ad6920de3d47a90c7">read_CS8</a></div><div class="ttdeci">int8_t * read_CS8(uint8_t file_sample, size_t *file_size)</div><div class="ttdoc">Lee un archivo con extensión CS8 y carga sus datos en un buffer.</div><div class="ttdef"><b>Definition:</b> IQ.c:17</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

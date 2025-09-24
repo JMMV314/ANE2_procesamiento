@@ -1,0 +1,137 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <complex.h>    // para complex double
+#include <math.h>       // para log10
+#include <sys/stat.h>
+#include <sys/types.h>
+
+// --- headers de tus módulos ---
+#include "Modules/bacn_RF.h"
+#include "Modules/cs8_to_iq.h"
+#include "Modules/welch.h"
+#include "Modules/save_to_file.h"
+
+long samples_to_xfer_max = 20000000; // valor por defecto (20M)---------------------
+
+// --- STUBS requeridos por bacn_RF.c ---
+int central_freq[10] = {100}; // se rellena en getSamples()
+
+void switch_ANTENNA(bool RF) {
+    (void)RF;
+    printf("[stub] switch_ANTENNA llamado (ignorado)\n");
+}
+
+int capture(long num_samples, uint64_t central_frequency_mhz) {
+
+    // ================================
+    // 0) CONFIGURAR Nº DE MUESTRAS
+    // ================================
+    samples_to_xfer_max = num_samples;  // 20M
+
+
+    // ================================
+    // 1) PARÁMETROS DE CAPTURA
+    // ================================
+    transceiver_mode_t mode = TRANSCEIVER_MODE_RX; // modo RX
+    //Parametros para TDT //Ignorar si modo=RX
+    uint16_t lna_gain    = 0;           // 32Ganancia LNA (0–40 dB)
+    uint16_t vga_gain    = 0;           // Ganancia VGA (0–62 dB)
+    uint16_t centralFrec_TDT = 200;     // Frecuencia central (MHz) para TDT  
+    bool     is_second_sample = false;  // false = primera 
+    // Asegurar que exista la carpeta
+    mkdir("Samples", 0777);
+
+    printf("▶ Capturando en %lu MHz (LNA=%u, VGA=%u, N=%ld)...\n",
+           central_frequency_mhz, lna_gain, vga_gain, samples_to_xfer_max);
+
+    int r = getSamples(central_frequency_mhz, mode, lna_gain, vga_gain,
+                       centralFrec_TDT, is_second_sample);
+    if (r != 0) {
+        fprintf(stderr, "❌ getSamples devolvió %d\n", r);
+        return 1;
+    }
+
+    printf("✅ Captura terminada. Archivo CS8 en Samples/0\n");
+
+    // ================================
+    // 2) CONVERTIR CS8 → IQ
+    // ================================
+    size_t N;
+    complex double* x = cargar_cs8("Samples/0", &N);
+    if (!x) {
+        fprintf(stderr, "❌ Error cargando Samples/0\n");
+        return 1;
+    }
+    printf("📥 %zu muestras cargadas desde Samples/0\n", N);
+
+    // --- eliminar DC (quitar pico central) ---
+    complex double mean = 0.0;
+    for (size_t i = 0; i < N; i++) mean += x[i];
+    mean /= (double)N;
+    for (size_t i = 0; i < N; i++) x[i] -= mean;
+
+    // ================================
+    // 3) CÁLCULO DE PSD (Welch)
+    // ================================
+    // ⚠️ IMPORTANTE: fs debe coincidir con DEFAULT_SAMPLE_RATE_HZ en bacn_RF.c
+    double fs = 20000000;             // Hz (ejemplo: 4 MHz)
+    int segment_length = 4096;   // tamaño de ventana
+    double overlap = 0.75;       // 75% de solapamiento
+
+    // reservar arrays de salida
+    double* f   = malloc(segment_length * sizeof(double));
+    double* Pxx = malloc(segment_length * sizeof(double));
+    if (!f || !Pxx) {
+        fprintf(stderr, "❌ Error al reservar memoria para PSD\n");
+        free(x);
+        return 1;
+    }
+
+    // calcular PSD-----------------------------------------------------------------
+    welch_psd_complex(x, N, fs, segment_length, overlap, f, Pxx);
+
+    // --- centrar espectro (fftshift) ---
+    // fftshift_pair(f, Pxx, segment_length);
+
+    // --- convertir a dB ---
+    double *Pxx_dB = malloc(segment_length * sizeof(double));
+    if (!Pxx_dB) {
+        fprintf(stderr, "❌ Error al reservar memoria para Pxx_dB\n");
+        free(x); free(f); free(Pxx);
+        return 1;
+    }
+    const double eps = 1e-15;
+    for (int i = 0; i < segment_length; i++)
+        Pxx_dB[i] = 10.0 * log10(Pxx[i] + eps);
+
+    // ================================
+    // 4) GUARDAR RESULTADO A CSV
+    // ================================
+    mkdir("Outputs", 0777);
+    // save_to_file(f, Pxx, segment_length, "Outputs/resultado_psd.csv");
+    save_to_file(f, Pxx_dB, segment_length, "Outputs/resultado_psd_db.csv");
+    printf("💾 PSD guardada en resultado_psd.csv (lineal) y resultado_psd_db.csv (dB)\n");
+
+    // ================================
+    // 5) LIMPIEZA
+    // ================================
+    free(x);
+    free(f);
+    free(Pxx);
+    free(Pxx_dB);
+
+    return 0;
+}
+
+int main(long argc, char *argv[]) {
+    if (argc > 1) {
+        long samples = strtol(argv[1], NULL, 10);
+        uint8_t central_freq_MHz = strtol(argv[2], NULL, 10);
+        capture(samples, central_freq_MHz);
+    } else {
+        capture(20000000, 98);
+    }
+    return 0;
+}

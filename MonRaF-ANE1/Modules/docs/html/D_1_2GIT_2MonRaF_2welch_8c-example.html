@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Proyecto ANE (UN): D:/GIT/MonRaF/welch.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Proyecto ANE (UN)
+   </div>
+   <div id="projectbrief">Proyecto que consiste en el análisis del espectro mediante una RaspBerry y una HackRF(gráficos, información relevante y presencia de señal)</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="doc-content">
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">D:/GIT/MonRaF/welch.c</div></div>
+</div><!--header-->
+<div class="contents">
+<p>Calcula la Densidad Espectral de Potencia (PSD) de Welch para señales complejas.</p>
+<p>Calcula la Densidad Espectral de Potencia (PSD) de Welch para señales complejas.Esta función aplica el método de Welch para calcular la PSD de una señal compleja de entrada. Divide la señal en segmentos superpuestos, aplica una ventana de Hamming a cada segmento, realiza la Transformada de Fourier en cada segmento, y promedia las potencias espectrales.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">signal</td><td>Puntero a la señal de entrada de tipo <code>complex double</code>. </td></tr>
+    <tr><td class="paramname">N_signal</td><td>Tamaño de la señal de entrada. </td></tr>
+    <tr><td class="paramname">fs</td><td>Frecuencia de muestreo de la señal de entrada. </td></tr>
+    <tr><td class="paramname">segment_length</td><td>Longitud de cada segmento en el que se divide la señal. </td></tr>
+    <tr><td class="paramname">overlap</td><td>Factor de solapamiento entre segmentos (0 a 1). </td></tr>
+    <tr><td class="paramname">f_out</td><td>Puntero al arreglo donde se almacenarán las frecuencias de salida. </td></tr>
+    <tr><td class="paramname">P_welch_out</td><td>Puntero al arreglo donde se almacenarán los valores calculados de la PSD.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>Es necesario liberar la memoria reservada para la FFT usando <code>fftw_destroy_plan</code> y <code>fftw_free</code>.</dd></dl>
+<div class="fragment"><div class="line"><span class="keywordtype">size_t</span> N_signal = 1024;</div>
+<div class="line">complex <span class="keywordtype">double</span> signal[N_signal];</div>
+<div class="line"><span class="keywordtype">double</span> fs = 1000.0;</div>
+<div class="line"><span class="keywordtype">int</span> segment_length = 256;</div>
+<div class="line"><span class="keywordtype">double</span> overlap = 0.5;</div>
+<div class="line"><span class="keywordtype">double</span> f_out[segment_length];</div>
+<div class="line"><span class="keywordtype">double</span> P_welch_out[segment_length];</div>
+<div class="line">welch_psd_complex(signal, N_signal, fs, segment_length, overlap, f_out, P_welch_out);</div>
+</div><!-- fragment --><div class="fragment"><div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;complex.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;fftw3.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;math.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &quot;welch.h&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#define PI 3.14159265358979323846</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> <a id="a0" name="a0"></a><a class="code hl_function" href="welch_8c.html#a7782130f6fb79d8dd195716ae2e85281">generate_hamming_window</a>(<span class="keywordtype">double</span>* window, <span class="keywordtype">int</span> segment_length) {</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> n = 0; n &lt; segment_length; n++) {</div>
+<div class="line">        window[n] = 0.54 - 0.46 * cos((2.0 * PI * n) / (segment_length - 1));</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> welch_psd_complex(complex <span class="keywordtype">double</span>* signal, <span class="keywordtype">size_t</span> N_signal, <span class="keywordtype">double</span> fs, </div>
+<div class="line">                       <span class="keywordtype">int</span> segment_length, <span class="keywordtype">double</span> overlap, <span class="keywordtype">double</span>* f_out, <span class="keywordtype">double</span>* P_welch_out) {</div>
+<div class="line">    <span class="keywordtype">int</span> step = (int)(segment_length * (1.0 - overlap));</div>
+<div class="line">    <span class="keywordtype">int</span> K = ((N_signal - segment_length) / step) + 1;</div>
+<div class="line">    <span class="keywordtype">size_t</span> psd_size = segment_length;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Inicializar ventana</span></div>
+<div class="line">    <span class="keywordtype">double</span> window[segment_length];</div>
+<div class="line">    <a class="code hl_function" href="welch_8c.html#a7782130f6fb79d8dd195716ae2e85281">generate_hamming_window</a>(window, segment_length);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Calcular normalización de la ventana</span></div>
+<div class="line">    <span class="keywordtype">double</span> U = 0.0;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; segment_length; i++) {</div>
+<div class="line">        U += window[i] * window[i];</div>
+<div class="line">    }</div>
+<div class="line">    U /= segment_length;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Reservar memoria para segmentos y resultados FFT</span></div>
+<div class="line">    complex <span class="keywordtype">double</span>* segment = fftw_alloc_complex(segment_length);</div>
+<div class="line">    complex <span class="keywordtype">double</span>* X_k = fftw_alloc_complex(segment_length);</div>
+<div class="line">    fftw_plan plan = fftw_plan_dft_1d(segment_length, segment, X_k, FFTW_FORWARD, FFTW_ESTIMATE);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Inicializar PSD</span></div>
+<div class="line">    memset(P_welch_out, 0, psd_size * <span class="keyword">sizeof</span>(<span class="keywordtype">double</span>));</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Procesar cada segmento</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; K; k++) {</div>
+<div class="line">        <span class="keywordtype">int</span> start = k * step;</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Aplicar ventana al segmento</span></div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; segment_length; i++) {</div>
+<div class="line">            segment[i] = signal[start + i] * window[i];</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Ejecutar FFT en el segmento</span></div>
+<div class="line">        fftw_execute(plan);</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Acumular la potencia espectral</span></div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; psd_size; i++) {</div>
+<div class="line">            <span class="keywordtype">double</span> abs_X_k = cabs(X_k[i]);</div>
+<div class="line">            P_welch_out[i] += (abs_X_k * abs_X_k) / (fs * U);</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Promediar sobre los segmentos</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; psd_size; i++) {</div>
+<div class="line">        P_welch_out[i] /= K;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Generar frecuencias asociadas</span></div>
+<div class="line">    <span class="keywordtype">double</span> val = fs / segment_length;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; psd_size; i++) {</div>
+<div class="line">        f_out[i] = -fs / 2 + i * val;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    printf(<span class="stringliteral">&quot;Finish&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Liberar memoria</span></div>
+<div class="line">    fftw_destroy_plan(plan);</div>
+<div class="line">    fftw_free(segment);</div>
+<div class="line">    fftw_free(X_k);</div>
+<div class="line">}</div>
+<div class="ttc" id="awelch_8c_html_a7782130f6fb79d8dd195716ae2e85281"><div class="ttname"><a href="welch_8c.html#a7782130f6fb79d8dd195716ae2e85281">generate_hamming_window</a></div><div class="ttdeci">void generate_hamming_window(double *window, int segment_length)</div><div class="ttdoc">Genera una ventana de Hamming.</div><div class="ttdef"><b>Definition</b> welch.c:29</div></div>
+</div><!-- fragment --> </div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

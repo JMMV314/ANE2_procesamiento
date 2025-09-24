@@ -1,0 +1,52 @@
+\hypertarget{parameters__tdt__rni_8h}{}\doxysection{Referencia del Archivo parameters\+\_\+tdt\+\_\+rni.\+h}
+\label{parameters__tdt__rni_8h}\index{parameters\_tdt\_rni.h@{parameters\_tdt\_rni.h}}
+
+
+Definción de función para analizar señales R\+NI y generar un archivo J\+S\+ON con resultados.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$complex.\+h$>$}\newline
+Dependencia gráfica adjunta para parameters\+\_\+tdt\+\_\+rni.\+h\+:
+% FIG 0
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{parameters__tdt__rni_8h_a7d0140937114629cf8495cf220d50191}{parameter\+\_\+tdt\+\_\+rni}} (int threshold, double $\ast$canalization, double $\ast$\mbox{\hyperlink{main_8c_a57e3ef1c76e7264b26d5ac6ce93061da}{bandwidth}}, int canalization\+\_\+length, uint64\+\_\+t central\+\_\+freq, uint8\+\_\+t file\+\_\+sample)
+\begin{DoxyCompactList}\small\item\em Analiza datos de señales R\+NI y guarda los resultados en un archivo J\+S\+ON. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Definción de función para analizar señales R\+NI y generar un archivo J\+S\+ON con resultados. 
+
+Este archivo contiene la definición de la función {\ttfamily parameter\+\_\+tdt\+\_\+rni} que calcula métricas relacionadas con la radiación electromagnética, como la intensidad de campo eléctrico (V/m) y el porcentaje del límite ocupado, guardándolos en un archivo J\+S\+ON. 
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{parameters__tdt__rni_8h_a7d0140937114629cf8495cf220d50191}\label{parameters__tdt__rni_8h_a7d0140937114629cf8495cf220d50191}} 
+\index{parameters\_tdt\_rni.h@{parameters\_tdt\_rni.h}!parameter\_tdt\_rni@{parameter\_tdt\_rni}}
+\index{parameter\_tdt\_rni@{parameter\_tdt\_rni}!parameters\_tdt\_rni.h@{parameters\_tdt\_rni.h}}
+\doxysubsubsection{\texorpdfstring{parameter\_tdt\_rni()}{parameter\_tdt\_rni()}}
+{\footnotesize\ttfamily void parameter\+\_\+tdt\+\_\+rni (\begin{DoxyParamCaption}\item[{int}]{threshold,  }\item[{double $\ast$}]{canalization,  }\item[{double $\ast$}]{bandwidth,  }\item[{int}]{canalization\+\_\+length,  }\item[{uint64\+\_\+t}]{central\+\_\+freq,  }\item[{uint8\+\_\+t}]{file\+\_\+sample }\end{DoxyParamCaption})}
+
+
+
+Analiza datos de señales R\+NI y guarda los resultados en un archivo J\+S\+ON. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em modulation} & Esquema de modulación utilizado (por ejemplo, Q\+AM, P\+SK). \\
+\hline
+{\em central\+\_\+freq} & Frecuencia central de la señal (en Hz). \\
+\hline
+{\em file\+\_\+sample} & Identificador del archivo de muestra C\+S8 que contiene los datos IQ.\\
+\hline
+\end{DoxyParams}
+La función procesa datos IQ para calcular métricas como\+:
+\begin{DoxyItemize}
+\item Intensidad del campo eléctrico ( V/m ).
+\item Porcentaje del límite permitido para la intensidad del campo.
+\end{DoxyItemize}
+
+Los resultados se almacenan en un archivo J\+S\+ON llamado {\ttfamily parameters\+\_\+tdt.\+json}.
+
+Si ocurre un error al abrir el archivo, muestra un mensaje de error. 

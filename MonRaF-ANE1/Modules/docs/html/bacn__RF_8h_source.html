@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>proyecto_ane: Fichero Fuente bacn_RF.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">proyecto_ane
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">bacn_RF.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="bacn__RF_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef BACN_RF_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define BACN_RF_H</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;libhackrf/hackrf.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="bacn__RF_8h.html#ae475be69fc9a8f7763e5f7c706189dcb">   20</a></span>&#160;<span class="preprocessor">#define DEFAULT_SAMPLE_RATE_HZ (20000000)</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="bacn__RF_8h.html#a1b0bf03037a294c1160b3c91126477df">   28</a></span>&#160;<span class="preprocessor">#define DEFAULT_CENTRAL_FREQ_HZ (10000000)</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="bacn__RF_8h.html#a10e24a1ae8c1e4da7a233bd91b1a7ea1">   36</a></span>&#160;<span class="preprocessor">#define DEFAULT_SAMPLES_TO_XFER_MAX (20000000)</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="bacn__RF_8h.html#ab1d57f40cf08975094fdd06dfb1ee390">   44</a></span>&#160;<span class="preprocessor">#define FD_BUFFER_SIZE (8 * 1024)</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="bacn__RF_8h.html#a9bd5dc8a36f3ae4bc33439ae69d0cba6">   50</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="bacn__RF_8h.html#a9bd5dc8a36f3ae4bc33439ae69d0cba6a1314d80debbe9bb145dbbf3220a74dc5">   51</a></span>&#160;    <a class="code" href="bacn__RF_8h.html#a9bd5dc8a36f3ae4bc33439ae69d0cba6a1314d80debbe9bb145dbbf3220a74dc5">TRANSCEIVER_MODE_OFF</a> = 0, </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="bacn__RF_8h.html#a9bd5dc8a36f3ae4bc33439ae69d0cba6a67d3cd8623de0cdad6ff55649d9fc9f6">   52</a></span>&#160;    <a class="code" href="bacn__RF_8h.html#a9bd5dc8a36f3ae4bc33439ae69d0cba6a67d3cd8623de0cdad6ff55649d9fc9f6">TRANSCEIVER_MODE_RX</a> = 1,  </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="bacn__RF_8h.html#a9bd5dc8a36f3ae4bc33439ae69d0cba6a941e58a990fed4e30568445399f78f39">   53</a></span>&#160;    <a class="code" href="bacn__RF_8h.html#a9bd5dc8a36f3ae4bc33439ae69d0cba6a941e58a990fed4e30568445399f78f39">TRANSCEIVER_MODE_TDT</a> = 2, </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;} <a class="code" href="bacn__RF_8h.html#a9bd5dc8a36f3ae4bc33439ae69d0cba6">transceiver_mode_t</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keywordtype">void</span> <a class="code" href="bacn__RF_8h.html#af0ce47b78049d707a5f9c60b6809ffd2">stop_main_loop</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keywordtype">int</span> <a class="code" href="bacn__RF_8h.html#a9c84bce41e700e6cf9ecdc396add709b">rx_callback</a>(hackrf_transfer* transfer);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">void</span> <a class="code" href="bacn__RF_8h.html#ade0dfc02a379113509b1bbbb661ddc8a">sigint_callback_handler</a>(<span class="keywordtype">int</span> signum);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">void</span> <a class="code" href="bacn__RF_8h.html#a246c2863ad984c4fea39ec1a2aebf1e1">sigalrm_callback_handler</a>();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">int</span> <a class="code" href="bacn__RF_8h.html#ad4823fd331e6ba0ca7b9eaaa14ac1922">getSamples</a>(int64_t <a class="code" href="bacn__RF_8c.html#a410c347e43a0f96446f28a81f5f3b494">lo_freq</a>, int64_t <a class="code" href="bacn__RF_8c.html#ab5c8e6fb8c5cb14072a051b77c53c0ce">hi_freq</a>, <a class="code" href="bacn__RF_8h.html#a9bd5dc8a36f3ae4bc33439ae69d0cba6">transceiver_mode_t</a> transceiver_mode, uint16_t lna_gain, uint16_t vga_gain);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#endif // BACN_RF_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="abacn__RF_8h_html_af0ce47b78049d707a5f9c60b6809ffd2"><div class="ttname"><a href="bacn__RF_8h.html#af0ce47b78049d707a5f9c60b6809ffd2">stop_main_loop</a></div><div class="ttdeci">void stop_main_loop(void)</div><div class="ttdoc">Detiene el bucle principal.</div><div class="ttdef"><b>Definition:</b> bacn_RF.c:59</div></div>
+<div class="ttc" id="abacn__RF_8h_html_a9bd5dc8a36f3ae4bc33439ae69d0cba6"><div class="ttname"><a href="bacn__RF_8h.html#a9bd5dc8a36f3ae4bc33439ae69d0cba6">transceiver_mode_t</a></div><div class="ttdeci">transceiver_mode_t</div><div class="ttdoc">Enumeración de los modos de operación del transceptor.</div><div class="ttdef"><b>Definition:</b> bacn_RF.h:50</div></div>
+<div class="ttc" id="abacn__RF_8h_html_a9bd5dc8a36f3ae4bc33439ae69d0cba6a1314d80debbe9bb145dbbf3220a74dc5"><div class="ttname"><a href="bacn__RF_8h.html#a9bd5dc8a36f3ae4bc33439ae69d0cba6a1314d80debbe9bb145dbbf3220a74dc5">TRANSCEIVER_MODE_OFF</a></div><div class="ttdeci">@ TRANSCEIVER_MODE_OFF</div><div class="ttdef"><b>Definition:</b> bacn_RF.h:51</div></div>
+<div class="ttc" id="abacn__RF_8h_html_ad4823fd331e6ba0ca7b9eaaa14ac1922"><div class="ttname"><a href="bacn__RF_8h.html#ad4823fd331e6ba0ca7b9eaaa14ac1922">getSamples</a></div><div class="ttdeci">int getSamples(int64_t lo_freq, int64_t hi_freq, transceiver_mode_t transceiver_mode, uint16_t lna_gain, uint16_t vga_gain)</div><div class="ttdoc">Configura y ejecuta la adquisición de muestras con HackRF.</div><div class="ttdef"><b>Definition:</b> bacn_RF.c:142</div></div>
+<div class="ttc" id="abacn__RF_8c_html_ab5c8e6fb8c5cb14072a051b77c53c0ce"><div class="ttname"><a href="bacn__RF_8c.html#ab5c8e6fb8c5cb14072a051b77c53c0ce">hi_freq</a></div><div class="ttdeci">int64_t hi_freq</div><div class="ttdoc">Frecuencia final para el barrido.</div><div class="ttdef"><b>Definition:</b> bacn_RF.c:51</div></div>
+<div class="ttc" id="abacn__RF_8h_html_a246c2863ad984c4fea39ec1a2aebf1e1"><div class="ttname"><a href="bacn__RF_8h.html#a246c2863ad984c4fea39ec1a2aebf1e1">sigalrm_callback_handler</a></div><div class="ttdeci">void sigalrm_callback_handler()</div><div class="ttdoc">Manejador de la señal SIGALRM.</div><div class="ttdef"><b>Definition:</b> bacn_RF.c:137</div></div>
+<div class="ttc" id="abacn__RF_8h_html_a9c84bce41e700e6cf9ecdc396add709b"><div class="ttname"><a href="bacn__RF_8h.html#a9c84bce41e700e6cf9ecdc396add709b">rx_callback</a></div><div class="ttdeci">int rx_callback(hackrf_transfer *transfer)</div><div class="ttdoc">Callback para manejar los datos recibidos del HackRF.</div><div class="ttdef"><b>Definition:</b> bacn_RF.c:66</div></div>
+<div class="ttc" id="abacn__RF_8h_html_a9bd5dc8a36f3ae4bc33439ae69d0cba6a941e58a990fed4e30568445399f78f39"><div class="ttname"><a href="bacn__RF_8h.html#a9bd5dc8a36f3ae4bc33439ae69d0cba6a941e58a990fed4e30568445399f78f39">TRANSCEIVER_MODE_TDT</a></div><div class="ttdeci">@ TRANSCEIVER_MODE_TDT</div><div class="ttdef"><b>Definition:</b> bacn_RF.h:53</div></div>
+<div class="ttc" id="abacn__RF_8h_html_ade0dfc02a379113509b1bbbb661ddc8a"><div class="ttname"><a href="bacn__RF_8h.html#ade0dfc02a379113509b1bbbb661ddc8a">sigint_callback_handler</a></div><div class="ttdeci">void sigint_callback_handler(int signum)</div><div class="ttdoc">Manejador de la señal SIGINT (Ctrl+C).</div><div class="ttdef"><b>Definition:</b> bacn_RF.c:128</div></div>
+<div class="ttc" id="abacn__RF_8c_html_a410c347e43a0f96446f28a81f5f3b494"><div class="ttname"><a href="bacn__RF_8c.html#a410c347e43a0f96446f28a81f5f3b494">lo_freq</a></div><div class="ttdeci">int64_t lo_freq</div><div class="ttdoc">Frecuencia inicial para el barrido.</div><div class="ttdef"><b>Definition:</b> bacn_RF.c:48</div></div>
+<div class="ttc" id="abacn__RF_8h_html_a9bd5dc8a36f3ae4bc33439ae69d0cba6a67d3cd8623de0cdad6ff55649d9fc9f6"><div class="ttname"><a href="bacn__RF_8h.html#a9bd5dc8a36f3ae4bc33439ae69d0cba6a67d3cd8623de0cdad6ff55649d9fc9f6">TRANSCEIVER_MODE_RX</a></div><div class="ttdeci">@ TRANSCEIVER_MODE_RX</div><div class="ttdef"><b>Definition:</b> bacn_RF.h:52</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>
