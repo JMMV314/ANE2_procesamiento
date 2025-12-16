@@ -1,2 +1,0 @@
-/home/jeisson/Proyecto/TEST/ANE2_procesamiento/MonRaF-ANE1/build/CMakeFiles/edit_cache.dir
-/home/jeisson/Proyecto/TEST/ANE2_procesamiento/MonRaF-ANE1/build/CMakeFiles/rebuild_cache.dir
