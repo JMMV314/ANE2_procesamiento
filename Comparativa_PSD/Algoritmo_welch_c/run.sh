@@ -18,7 +18,7 @@ echo "1. COMPILANDO EL CÓDIGO C..."
 echo "========================================"
 
 # Compila el código (ajusta las rutas de libs si es necesario)
-gcc main.c libs/psd.c -o $EXE_NAME -I. -lfftw3 -lm -lcjson
+gcc main1.c libs/psd.c -o $EXE_NAME -I. -lfftw3 -lm -lcjson
 
 # Verificamos si la compilación fue exitosa
 if [ $? -ne 0 ]; then
