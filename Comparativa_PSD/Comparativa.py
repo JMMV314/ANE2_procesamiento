@@ -9,8 +9,9 @@ from scipy import signal
 # =========================================================
 # CONFIGURACIÓN GENERAL
 # =========================================================
-LIB_PSD_PATH = os.path.abspath("/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/Comparativa_PSD/Algoritmo/libs/libpsd.so") # AJUSTA ESTA RUTA SI ES NECESARIO
-FILENAME_BIN = "/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/Comparativa_PSD/Polyphase98MHz_FM"
+LIB_PSD_PATH = os.path.abspath("/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/Comparativa_PSD/Algoritmo_welch_c/libs/libpsd.so") # AJUSTA ESTA RUTA SI ES NECESARIO
+#FILENAME_BIN = "/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/Comparativa_PSD/Polyphase98MHz_FM"
+FILENAME_BIN = "/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/Adquisicion/Adquisition"
 
 # =========================================================
 # 1. WRAPPER PARA WELCH (C/CTYPES)
@@ -210,9 +211,9 @@ if __name__ == "__main__":
         #    Unimos el diccionario base con los cambios de ganancia
         current_cfg = {**base_config, **setup} 
         
-        # 2. Adquirir
-        if not adquirir_hardware(current_cfg):
-            continue
+        ## 2. Adquirir
+        #if not adquirir_hardware(current_cfg):
+        #    continue
             
         # 3. Cargar datos
         with open(FILENAME_BIN, "rb") as f:
