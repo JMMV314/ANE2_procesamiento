@@ -1,154 +1,206 @@
 import pyvisa
 import numpy as np
-import matplotlib.pyplot as plt
+import threading
+import subprocess
 import time
+import os
+from pathlib import Path
+from datetime import datetime
 
+# ==========================================
+# 1. CLASE CONTROLADOR KEYSIGHT
+# ==========================================
 class KeysightController:
-    # CORRECCIÓN 1: Doble guion bajo init
     def __init__(self, ip, timeout_connection) -> None:
         self.ip = ip
         self.timeout_connection = timeout_connection
         self.visa_addr = f"TCPIP::{self.ip}::INSTR"
-        # CORRECCIÓN 2: Quitamos '@py' para usar el driver por defecto (NI/Keysight)
-        # Si prefieres usar pyvisa-py, devuélvelo a ('@py')
         try:
-            self.rm = pyvisa.ResourceManager() 
+            self.rm = pyvisa.ResourceManager()
         except:
             self.rm = pyvisa.ResourceManager('@py')
-
         self.inst = None
-
-    def _init(self):
-        return self.rm.open_resource(self.visa_addr)
 
     def connect(self):
         try:
-            self.inst = self._init()
+            self.inst = self.rm.open_resource(self.visa_addr)
             self.inst.timeout = self.timeout_connection
-            # Opcional: Aumentar timeout del instrumento si el barrido es lento
+            return 0
         except Exception as e:
-            print(f"Failed to connect to instrument: {e}")
-            self.inst = None
+            print(f"❌ [Keysight] Error conexión: {e}")
             return 1
-        return 0
-    
-    def whoami(self):
-        if self.inst is None:
-            print("No instrument connected.")
-            return
-        print(f"Connected to: {self.inst.query('*IDN?').strip()}")
-    # ... (whoami se mantiene igual) ...
 
-    # CORRECCIÓN 3: Añadimos 'span' a la configuración
-    def setup(self, freq, span):
-        if self.inst is None:
-            print("No instrument connected.")
-            return
+    def setup(self, freq, span, points=1001):
+        """Configura frecuencia y span antes de la captura"""
+        if self.inst is None: return
         self.inst.write("*CLS")
         self.inst.write(":FORM ASC")
         self.inst.write(f":SENSe:FREQuency:CENTer {freq}")
-        # Enviamos el comando de SPAN al equipo
-        self.inst.write(f":SENSe:FREQuency:SPAN {span}") 
-
-    def configure_advanced(self, rbw=None, ref_level=None, points=None):
-        """
-        Configura parámetros avanzados si se especifican.
-        """
-        if self.inst is None:
-            return
-
-        # 1. Configurar Reference Level (Amplitud tope)
-        if ref_level is not None:
-            # Ej: self.keysight.configure_advanced(ref_level=0)
-            self.inst.write(f":DISPlay:WINDow:TRACe:Y:RLEVel {ref_level}")
-
-        # 2. Configurar RBW (Resolución)
-        if rbw is not None:
-            # Ej: self.keysight.configure_advanced(rbw=1000) # 1 kHz
-            self.inst.write(f":SENSe:BANDwidth:RESolution {rbw}")
-        else:
-            # Si no se especifica, dejar en automático
-            self.inst.write(":SENSe:BANDwidth:RESolution:AUTO ON")
-
-        # 3. Puntos de barrido (Resolución eje X)
-        if points is not None:
-            # Ej: 461, 1001, etc.
-            self.inst.write(f":SENSe:SWEep:POINts {points}")
-            
-    def set_trace_mode(self, mode="WRITe"):
-        """
-        Cambia el modo de la traza: WRITe, MAXHold, MINHold, AVERage
-        """
-        if self.inst is None: return
-        # Nota: Algunos modelos viejos usan :TRACe1:MODE
-        # Modelos nuevos (serie X): :TRACe1:TYPE
-        try:
-            self.inst.write(f":TRACe:TYPE {mode}")
-        except:
-            print(f"Comando de traza no aceptado para modo {mode}")
+        self.inst.write(f":SENSe:FREQuency:SPAN {span}")
+        self.inst.write(f":SENSe:SWEep:POINts {points}")
 
     def capture_trace(self):
-        if self.inst is None:
-            print("No instrument connected.")
-            return []
-        # Pedimos la data
+        """Solicita los datos de la traza actual"""
+        if self.inst is None: return []
         try:
-            raw_data = self.inst.query_ascii_values(":TRACe:DATA? TRACE1")
-            return np.array(raw_data)
+            return np.array(self.inst.query_ascii_values(":TRACe:DATA? TRACE1"))
         except Exception as e:
-            print(f"Error reading trace: {e}")
+            print(f"❌ [Keysight] Error captura: {e}")
             return []
 
     def disconnect(self):
         try:
-            if self.inst is not None:
-                self.inst.close()
-            if self.rm is not None:
-                self.rm.close() # Cerrar el Resource Manager también es buena práctica
+            if self.inst: self.inst.close()
+            if self.rm: self.rm.close()
+        except: pass
+
+# ==========================================
+# 2. HILO: TAREA KEYSIGHT (Guarda CSV)
+# ==========================================
+def tarea_keysight(keysight_obj, timestamp, cfg):
+    ruta_carpeta = cfg["ruta_salida"]
+    
+    print(" -> [Hilo Keysight] Solicitando traza...")
+    trace = keysight_obj.capture_trace()
+    
+    if len(trace) > 0:
+        # Calcular eje de frecuencias
+        freq = cfg["frecuencia_central_hz"]
+        span = cfg["span_hz"]
+        freqs = np.linspace(freq - span/2, freq + span/2, len(trace))
+        
+        # Nombre del archivo
+        filename = f"keysight_{timestamp}.csv"
+        full_path = os.path.join(ruta_carpeta, filename)
+        
+        # Guardar CSV
+        try:
+            with open(full_path, "w", encoding="utf-8") as f:
+                f.write(f"# Timestamp: {timestamp}\n")
+                f.write(f"# Config: {cfg}\n")
+                f.write("Frecuencia_Hz,Amplitud_dBm\n")
+                for f_hz, amp in zip(freqs, trace):
+                    f.write(f"{f_hz:.2f},{amp:.6f}\n")
+            print(f"✅ [Keysight] CSV guardado en: {full_path}")
         except Exception as e:
-            print(f"Failed to disconnect: {e}")
-            return 1
-        return 0
-    
-def acquire_sample_keysigh(keysight, freq, span):
-    # Pasamos freq Y span a la configuración
-    keysight.setup(freq, span)
-    keysight.configure_advanced(rbw=47000, points= 4096)  
-    keysight.set_trace_mode("AVErage")
-    
-    # Pequeña espera para asegurar que el equipo aplicó la config y barrió
-    time.sleep(2) 
-    
-    trace = keysight.capture_trace()
-    
-    if len(trace) == 0:
-        return [], []
+            print(f"❌ [Keysight] Error guardando archivo: {e}")
+    else:
+        print("❌ [Keysight] Falló la captura de datos (traza vacía)")
 
-    # Crear eje X
-    freqs_hz = np.linspace(freq - span/2, freq + span/2, len(trace))
-    return freqs_hz, trace
-
-# --- PARAMETERS ---
-INSTR_IP = "192.168.46.113" # ¡Asegúrate que esta sea la IP real de tu equipo!
-CENTER_FREQ_HZ = 98e6 
-SPAN_HZ = 20e6
-
-keysight = KeysightController(INSTR_IP, 10000)
-
-if keysight.connect() == 0:
-    keysight.whoami() # Verificar conexión
-    f, trace = acquire_sample_keysigh(keysight, CENTER_FREQ_HZ, SPAN_HZ)
-
-    if len(f) > 0:
-        # --- VISUALIZATION ---
-        plt.figure(figsize=(10, 5))
-        plt.plot(f / 1e6, trace)
-        plt.title(f"Spectrum Capture at {CENTER_FREQ_HZ/1e6} MHz")
-        plt.xlabel("Frequency (MHz)")
-        plt.ylabel("Amplitude (dBm)")
-        plt.grid(True)
-        plt.show()
+# ==========================================
+# 3. HILO: TAREA HACKRF (Guarda CS8)
+# ==========================================
+def tarea_hackrf(timestamp, cfg):
+    ruta_carpeta = Path(cfg["ruta_salida"])
+    filename = f"hackrf_{timestamp}.cs8"
+    ruta_completa = ruta_carpeta / filename
     
-    keysight.disconnect()
-else:
-    print("No se pudo conectar al equipo.")
+    # Comprobar si existe hackrf_transfer
+    try:
+        # Construcción del comando con los parámetros del cfg
+        cmd = [
+            "hackrf_transfer",
+            "-r", str(ruta_completa),               # Ruta de salida
+            "-f", str(int(cfg["frecuencia_central_hz"])), # Frecuencia
+            "-s", str(int(cfg["sample_rate_hz"])),        # Tasa de muestreo
+            "-n", str(int(cfg["num_muestras"])),          # Número de muestras
+            "-l", str(int(cfg["lna_gain"])),              # Ganancia LNA
+            "-g", str(int(cfg["vga_gain"])),              # Ganancia VGA
+            "-a", str(int(cfg["amp_enable"])),            # Amplificador (0/1)
+        ]
+        
+        print(f" -> [Hilo HackRF] Iniciando grabación ({cfg['num_muestras']} muestras)...")
+        # Ejecutar comando
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        
+        if result.returncode == 0:
+            size = ruta_completa.stat().st_size
+            print(f"✅ [HackRF] CS8 guardado en: {ruta_completa} ({size} bytes)")
+        else:
+            print(f"❌ [HackRF] Error: {result.stderr}")
+            
+    except FileNotFoundError:
+        print("❌ [HackRF] Error: No se encuentra el comando 'hackrf_transfer'. ¿Está instalado?")
+
+# ==========================================
+# 4. ORQUESTADOR PRINCIPAL
+# ==========================================
+def adquisicion_simultanea(cfg_k, cfg_h):
+    # 1. Crear carpetas si no existen (son rutas diferentes)
+    os.makedirs(cfg_k["ruta_salida"], exist_ok=True)
+    os.makedirs(cfg_h["ruta_salida"], exist_ok=True)
+    
+    # 2. Generar Timestamp único para sincronizar nombres
+    timestamp_comun = datetime.now().strftime("%Y%m%d_%H%M%S")
+    
+    print(f"\n--- Iniciando Proceso: {timestamp_comun} ---")
+    print(f"📁 Ruta Keysight: {cfg_k['ruta_salida']}")
+    print(f"📁 Ruta HackRF:   {cfg_h['ruta_salida']}")
+
+    # 3. Conectar y Configurar Keysight (Fase Previa)
+    ks = KeysightController(cfg_k["ip"], 10000)
+    if ks.connect() != 0:
+        print("Abortando: No hay conexión con el Keysight.")
+        return
+
+    try:
+        print("\n[1/3] Configurando Keysight...")
+        ks.setup(cfg_k["frecuencia_central_hz"], cfg_k["span_hz"], cfg_k["puntos"])
+        
+        # Tiempo de estabilización del barrido del Keysight
+        print("[2/3] Esperando estabilización (2s)...")
+        time.sleep(2) 
+        
+        print("[3/3] ¡Disparando adquisiciones simultáneas!")
+        
+        # 4. Lanzar Hilos
+        # Hilo HackRF
+        t_hack = threading.Thread(target=tarea_hackrf, args=(timestamp_comun, cfg_h))
+        # Hilo Keysight
+        t_keys = threading.Thread(target=tarea_keysight, args=(ks, timestamp_comun, cfg_k))
+        
+        t_hack.start()
+        t_keys.start()
+        
+        # Esperar a que terminen
+        t_hack.join()
+        t_keys.join()
+        
+        print("\n--- Adquisición Finalizada con Éxito ---")
+
+    finally:
+        ks.disconnect()
+
+# ==========================================
+# CONFIGURACIÓN Y EJECUCIÓN
+# ==========================================
+if __name__ == "__main__":
+    
+    # --- CONFIGURACIÓN KEYSIGHT (CSV) ---
+    cfg_keysight = {
+        "ip": "192.168.46.113",
+        # RUTA ESPECÍFICA PARA EL CSV
+        "ruta_salida": "/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/extraccion",
+        
+        "frecuencia_central_hz": int(98e6),
+        "span_hz": int(20e6),
+        "puntos": 4096
+    }
+
+    # --- CONFIGURACIÓN HACKRF (CS8) ---
+    cfg_hackrf = {
+        # RUTA ESPECÍFICA PARA EL IQ (CS8)
+        "ruta_salida": "/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/extraccion",
+        
+        "frecuencia_central_hz": int(98e6),
+        "sample_rate_hz": int(20e6),   # Frecuencia de muestreo
+        "num_muestras": int(20e6),      # Cantidad de muestras (2M @ 20MHz = 0.1s)
+        
+        # Ganancias Configurables:
+        "lna_gain": 0,    # (0-40, saltos de 8)
+        "vga_gain": 0,    # (0-62, saltos de 2)
+        "amp_enable": 0    # (0 = Off, 1 = On)
+    }
+
+    # Ejecutar
+    adquisicion_simultanea(cfg_keysight, cfg_hackrf)
