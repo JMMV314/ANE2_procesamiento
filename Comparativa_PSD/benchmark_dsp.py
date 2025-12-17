@@ -9,7 +9,7 @@ from scipy import signal
 # =========================================================
 # CONFIGURACIÓN GENERAL
 # =========================================================
-LIB_PSD_PATH = os.path.abspath("/home/jmmv/ANE2/Prueba_PSD/libs/libpsd.so") # AJUSTA ESTA RUTA SI ES NECESARIO
+LIB_PSD_PATH = os.path.abspath("/home/jmmv/ANE2/Algoritmo/libs/libpsd.so") # AJUSTA ESTA RUTA SI ES NECESARIO
 FILENAME_BIN = "/home/jmmv/ANE2/Comparativa_PSD/benchmark_capture"
 
 # =========================================================

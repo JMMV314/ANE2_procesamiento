@@ -30,7 +30,7 @@ class PsdConfig(ctypes.Structure):
 
 # Cargar la librería compilada
 # Asegúrate de que libpsd.so esté en la misma carpeta o ruta completa
-lib_path = os.path.abspath("/home/jmmv/ANE2/Prueba_PSD/libs/libpsd.so")
+lib_path = os.path.abspath("/home/jmmv/ANE2/Algoritmo/libs/libpsd.so")
 try:
     lib = ctypes.CDLL(lib_path)
 except OSError:
