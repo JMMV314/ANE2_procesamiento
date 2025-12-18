@@ -171,7 +171,7 @@ def plot(freqs, psd, cfg):
 
 cfg = {
     "nombre_archivo": "/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/Comparativa_PSD/Polyphase98MHz_FM",
-    "frecuencia_central": int(86.23e6),
+    "frecuencia_central": int(86e6),
     "ancho_banda": 20e6,
     "num_muestras": int(2e6),
     "lna": 20,
