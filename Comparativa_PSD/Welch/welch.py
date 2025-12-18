@@ -277,11 +277,11 @@ mis_capturas = [
     {
         "nombre_archivo": "fm_full_dataset.bin",
         "nombre_csv": "/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/Comparativa_PSD/Welch/Resultados/resultado_prueba_1.csv",
-        "frecuencia_central": 86*1000000,  # 103.7 MHz
+        "frecuencia_central": 80*1000000,  # 103.7 MHz
         "ancho_banda": 20*1000000,         # 20 MHz
         "num_muestras": 20*1000000,        # ~2 segundos (suficiente para Welch)
-        "lna": 0,                       # Ganancia LNA un poco más alta para ver detalles
-        "vga": 0, 
+        "lna": 24,                       # Ganancia LNA un poco más alta para ver detalles
+        "vga": 10, 
         "amp": 0
     }
 ]
