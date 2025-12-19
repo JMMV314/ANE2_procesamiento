@@ -183,7 +183,7 @@ if __name__ == "__main__":
     # --- CONFIGURACIÓN KEYSIGHT ---
     cfg_keysight = {
         "ip": "192.168.46.113",
-        "ruta_salida": "Calibración/extraccion/Samples",
+        "ruta_salida": "Calibracion/extraccion/Samples",
         
         "frecuencia_central_hz": int(86.23e6),
         "span_hz": int(20e6),
@@ -197,7 +197,7 @@ if __name__ == "__main__":
 
     # --- CONFIGURACIÓN HACKRF ---
     cfg_hackrf = {
-        "ruta_salida": "Calibración/extraccion/Samples",
+        "ruta_salida": "Calibracion/extraccion/Samples",
         "frecuencia_central_hz": int(86.23e6),
         "sample_rate_hz": int(20e6),
         "num_muestras": int(2e6),

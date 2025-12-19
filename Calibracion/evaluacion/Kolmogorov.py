@@ -131,8 +131,8 @@ def leer_espectro_csv(ruta_archivo):
 # --- 3. BLOQUE PRINCIPAL DE EJECUCIÓN ---
 
 # Define aquí tus archivos
-archivo_ref = f'Calibración/extraccion/Samples/keysight_20251218_072409.csv'
-archivo_sens = f'Calibración/extraccion/Samples/hackrf_20251218_072409_psd_pfb.csv'
+archivo_ref = f'Calibracion/extraccion/Samples/keysight_20251218_072409.csv'
+archivo_sens = f'Calibracion/extraccion/Samples/hackrf_20251218_072409_psd_pfb.csv'
 
 # ¿Quieres generar archivos de prueba para ver si funciona? (Pon True si no tienes los archivos aún)
 GENERAR_PRUEBA = True 

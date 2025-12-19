@@ -8,126 +8,134 @@ import time
 import sys
 
 # Añade la ruta donde tienes tu extractor
-sys.path.append('Calibración/extraccion')
+sys.path.append('Calibracion/extraccion')
+sys.path.append('Comparativa_PSD/polyphase')
+
 try:
     import extractor
 except ImportError:
     print("⚠️ No se encontró el módulo 'extractor'. Asegúrate de que la ruta sea correcta o comenta la línea de adquisición.")
 
-# ==========================================
+try:
+    import polyphase
+except ImportError:
+    print("⚠️ No se encontró el módulo 'Polyphase'. Asegúrate de que la ruta sea correcta o comenta la línea de adquisición.")
+
+'''# ==========================================
 # 1. CLASE POLYPHASE FILTER BANK (PFB)
 # ==========================================
-class RealPolyphaseFilterBank:
-    """
-    Implementación de PFB para canalización y estimación espectral.
-    Reduce el 'spectral leakage' comparado con una FFT directa o Welch simple.
-    """
-    def __init__(self, num_channels=1024, taps_per_channel=8, window='kaiser'):
-        self.M = num_channels
-        self.K = taps_per_channel
-        self.L = self.M * self.K  # longitud total del FIR
-
-        # --- Diseño del filtro prototipo ---
-        if window == 'kaiser':
-            beta = 8.6  # ~80 dB de atenuación
-            h = signal.firwin(self.L, cutoff=1.0/self.M, window=('kaiser', beta))
-        else:
-            h = signal.firwin(self.L, cutoff=1.0/self.M, window=window)
-
-        # Normalización de energía
-        h = h / np.sqrt(np.sum(h**2))
-
-        # --- Descomposición polifásica ---
-        # h_p[p, m] = h[p + m*M]
-        self.h_poly = np.reshape(h, (self.K, self.M))
-
-    def process(self, x):
-        """
-        Procesa IQ complejos y devuelve PSD promediada.
-        """
-        # Número de bloques FFT posibles
-        n_blocks = (len(x) - self.L) // self.M
-        if n_blocks <= 0:
-            raise ValueError(f"No hay suficientes muestras ({len(x)}) para el PFB (Req: >{self.L})")
-
-        psd_acc = np.zeros(self.M, dtype=np.float64)
-
-        # Procesamiento por bloques
-        # (Se podría vectorizar más, pero este bucle es claro y funcional)
-        for b in range(n_blocks):
-            # Extraer segmento de tamaño L (se solapan implícitamente por el avance de M)
-            x_block = x[b*self.M : b*self.M + self.L]
-
-            # Matriz polifásica de datos
-            X = np.reshape(x_block, (self.K, self.M))
-
-            # Filtrado polifásico (producto punto + suma sobre los taps)
-            y = np.sum(X * self.h_poly, axis=0)
-
-            # FFT sobre la salida del filtro
-            Y = np.fft.fftshift(np.fft.fft(y))
-            
-            # Acumular potencia
-            psd_acc += np.abs(Y)**2
-
-        psd_avg = psd_acc / n_blocks
-        return psd_avg
-
-# ==========================================
-# 2. FUNCIONES AUXILIARES DE PROCESAMIENTO
-# ==========================================
-
-def corregir_respuesta_filtro(psd):
-    """
-    Aproximación simple: Asume que el ruido debería ser plano.
-    Calcula la tendencia del piso de ruido y la invierte.
-    """
-    # Filtro de mediana para estimar el piso de ruido ignorando picos estrechos
-    noise_floor_shape = signal.medfilt(psd, kernel_size=101)
-    
-    center_val = np.median(noise_floor_shape)
-    correction_curve = center_val - noise_floor_shape
-    
-    return psd + correction_curve
-
-def procesar_hackrf_pfb(ruta_archivo, fs, center_freq, num_channels=1024, aplicar_correccion=False):
-    print(f" -> Procesando HackRF (PFB): {os.path.basename(ruta_archivo)}")
-    
-    # 1. Leer y Normalizar
-    raw_data = np.fromfile(ruta_archivo, dtype=np.int8)
-    # Convertir a complejo (I + jQ) y normalizar rango int8
-    iq_data = (raw_data[0::2] + 1j * raw_data[1::2]) / 128.0
-    
-    # 2. Instanciar y ejecutar PFB
-    # Usamos 'num_channels' como equivalente a 'nperseg' para definir resolución
-    pfb = RealPolyphaseFilterBank(num_channels=num_channels, taps_per_channel=8)
-    
-    t0 = time.time()
-    psd_raw = pfb.process(iq_data)
-    print(f"    [PFB] Procesado en {time.time()-t0:.3f} s")
-
-    # 3. Conversión de Unidades
-    # PSD física (W/Hz) aproximada
-    psd_w_hz = psd_raw / (fs * num_channels)
-
-    # Conversión a dBm/Hz
-    psd_dbm_hz = 10 * np.log10(psd_w_hz + 1e-18) + 30
-
-    # Conversión a dBm por bin (para comparar con Analizador de Espectro)
-    bin_bw = fs / num_channels
-    psd_dbm_bin = psd_dbm_hz + 10 * np.log10(bin_bw)
-
-    # 4. Eje de Frecuencias
-    freqs = np.fft.fftshift(np.fft.fftfreq(num_channels, d=1/fs)) + center_freq
-
-    # 5. Corrección opcional (aplanar respuesta del filtro)
-    if aplicar_correccion:
-        psd_final = corregir_respuesta_filtro(psd_dbm_bin)
-        print("    [Info] Corrección de filtro aplicada.")
-    else:
-        psd_final = psd_dbm_bin
-
-    return freqs, psd_final
+#class RealPolyphaseFilterBank:
+#    """
+#    Implementación de PFB para canalización y estimación espectral.
+#    Reduce el 'spectral leakage' comparado con una FFT directa o Welch simple.
+#    """
+#    def __init__(self, num_channels=1024, taps_per_channel=8, window='kaiser'):
+#        self.M = num_channels
+#        self.K = taps_per_channel
+#        self.L = self.M * self.K  # longitud total del FIR
+#
+#        # --- Diseño del filtro prototipo ---
+#        if window == 'kaiser':
+#            beta = 8.6  # ~80 dB de atenuación
+#            h = signal.firwin(self.L, cutoff=1.0/self.M, window=('kaiser', beta))
+#        else:
+#            h = signal.firwin(self.L, cutoff=1.0/self.M, window=window)
+#
+#        # Normalización de energía
+#        h = h / np.sqrt(np.sum(h**2))
+#
+#        # --- Descomposición polifásica ---
+#        # h_p[p, m] = h[p + m*M]
+#        self.h_poly = np.reshape(h, (self.K, self.M))
+#
+#    def process(self, x):
+#        """
+#        Procesa IQ complejos y devuelve PSD promediada.
+#        """
+#        # Número de bloques FFT posibles
+#        n_blocks = (len(x) - self.L) // self.M
+#        if n_blocks <= 0:
+#            raise ValueError(f"No hay suficientes muestras ({len(x)}) para el PFB (Req: >{self.L})")
+#
+#        psd_acc = np.zeros(self.M, dtype=np.float64)
+#
+#        # Procesamiento por bloques
+#        # (Se podría vectorizar más, pero este bucle es claro y funcional)
+#        for b in range(n_blocks):
+#            # Extraer segmento de tamaño L (se solapan implícitamente por el avance de M)
+#            x_block = x[b*self.M : b*self.M + self.L]
+#
+#            # Matriz polifásica de datos
+#            X = np.reshape(x_block, (self.K, self.M))
+#
+#            # Filtrado polifásico (producto punto + suma sobre los taps)
+#            y = np.sum(X * self.h_poly, axis=0)
+#
+#            # FFT sobre la salida del filtro
+#            Y = np.fft.fftshift(np.fft.fft(y))
+#            
+#            # Acumular potencia
+#            psd_acc += np.abs(Y)**2
+#
+#        psd_avg = psd_acc / n_blocks
+#        return psd_avg
+#
+## ==========================================
+## 2. FUNCIONES AUXILIARES DE PROCESAMIENTO
+## ==========================================
+#
+#def corregir_respuesta_filtro(psd):
+#    """
+#    Aproximación simple: Asume que el ruido debería ser plano.
+#    Calcula la tendencia del piso de ruido y la invierte.
+#    """
+#    # Filtro de mediana para estimar el piso de ruido ignorando picos estrechos
+#    noise_floor_shape = signal.medfilt(psd, kernel_size=101)
+#    
+#    center_val = np.median(noise_floor_shape)
+#    correction_curve = center_val - noise_floor_shape
+#    
+#    return psd + correction_curve
+#
+#def procesar_hackrf_pfb(ruta_archivo, fs, center_freq, num_channels=1024, aplicar_correccion=False):
+#    print(f" -> Procesando HackRF (PFB): {os.path.basename(ruta_archivo)}")
+#    
+#    # 1. Leer y Normalizar
+#    raw_data = np.fromfile(ruta_archivo, dtype=np.int8)
+#    # Convertir a complejo (I + jQ) y normalizar rango int8
+#    iq_data = (raw_data[0::2] + 1j * raw_data[1::2]) / 128.0
+#    
+#    # 2. Instanciar y ejecutar PFB
+#    # Usamos 'num_channels' como equivalente a 'nperseg' para definir resolución
+#    pfb = RealPolyphaseFilterBank(num_channels=num_channels, taps_per_channel=8)
+#    
+#    t0 = time.time()
+#    psd_raw = pfb.process(iq_data)
+#    print(f"    [PFB] Procesado en {time.time()-t0:.3f} s")
+#
+#    # 3. Conversión de Unidades
+#    # PSD física (W/Hz) aproximada
+#    psd_w_hz = psd_raw / (fs * num_channels)
+#
+#    # Conversión a dBm/Hz
+#    psd_dbm_hz = 10 * np.log10(psd_w_hz + 1e-18) + 30
+#
+#    # Conversión a dBm por bin (para comparar con Analizador de Espectro)
+#    bin_bw = fs / num_channels
+#    psd_dbm_bin = psd_dbm_hz + 10 * np.log10(bin_bw)
+#
+#    # 4. Eje de Frecuencias
+#    freqs = np.fft.fftshift(np.fft.fftfreq(num_channels, d=1/fs)) + center_freq
+#
+#    # 5. Corrección opcional (aplanar respuesta del filtro)
+#    if aplicar_correccion:
+#        psd_final = corregir_respuesta_filtro(psd_dbm_bin)
+#        print("    [Info] Corrección de filtro aplicada.")
+#    else:
+#        psd_final = psd_dbm_bin
+#
+#    return freqs, psd_final
+'''
 
 # ==========================================
 # 3. CONFIGURACIÓN Y UTILIDADES
@@ -138,7 +146,7 @@ fc=int(98.7e6)
 
 cfg_keysight = {
     "ip": "192.168.46.113",
-    "ruta_salida": "Calibración/extraccion/Samples",
+    "ruta_salida": "Calibracion/extraccion/Samples",
     "frecuencia_central_hz": fc,
     "span_hz": int(20e6),
     "puntos": 4096,
@@ -146,7 +154,7 @@ cfg_keysight = {
 }
 
 cfg_hackrf = {
-    "ruta_salida": "Calibración/extraccion/Samples",
+    "ruta_salida": "Calibracion/extraccion/Samples",
     "frecuencia_central_hz": fc,
     "sample_rate_hz": int(20e6),
     "num_muestras": int(20e6),
@@ -157,8 +165,8 @@ cfg_hackrf = {
 
 # --- CONFIGURACIÓN DE PROCESAMIENTO ---
 CFG = {
-    "ruta_keysight": "Calibración/extraccion/Samples",
-    "ruta_hackrf": "Calibración/extraccion/Samples",
+    "ruta_keysight": "Calibracion/extraccion/Samples",
+    "ruta_hackrf": "Calibracion/extraccion/Samples",
     
     "center_freq": fc, 
     "sample_rate": 20e6,
@@ -242,7 +250,7 @@ if __name__ == "__main__":
         kf, ka = leer_csv_keysight(f_k)
         
         # AQUI ES DONDE USAMOS EL NUEVO MÉTODO PFB
-        hf, ha = procesar_hackrf_pfb(
+        hf, ha = polyphase.procesar_hackrf_pfb(
             f_h, 
             fs=CFG["sample_rate"], 
             center_freq=CFG["center_freq"], 

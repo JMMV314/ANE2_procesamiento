@@ -9,7 +9,7 @@ from scipy import signal
 # =========================================================
 # CONFIGURACIÓN GENERAL
 # =========================================================
-LIB_PSD_PATH = os.path.abspath("/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/Comparativa_PSD/Algoritmo_welch_c/libs/libpsd.so") # AJUSTA ESTA RUTA SI ES NECESARIO
+LIB_PSD_PATH = os.path.abspath("/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/Comparativa_PSD/Welch/Algoritmo_welch_c/libs/libpsd.so") # AJUSTA ESTA RUTA SI ES NECESARIO
 #FILENAME_BIN = "/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/Comparativa_PSD/Polyphase98MHz_FM"
 FILENAME_BIN = "/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/Adquisicion/Adquisition"
 

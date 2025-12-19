@@ -30,7 +30,7 @@ class PsdConfig(ctypes.Structure):
 
 # Cargar la librería compilada
 # Asegúrate de que libpsd.so esté en la misma carpeta o ruta completa
-lib_path = os.path.abspath("/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/Comparativa_PSD/Algoritmo_welch_c/libs/libpsd.so")
+lib_path = os.path.abspath("/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/Comparativa_PSD/Welch/Algoritmo_welch_c/libs/libpsd.so")
 try:
     lib = ctypes.CDLL(lib_path)
 except OSError:
@@ -275,7 +275,7 @@ def guardar_csv(nombre_csv_deseado, freqs, psd, config):
 
 mis_capturas = [
     {
-        "nombre_archivo": "fm_full_dataset.bin",
+        "nombre_archivo": "Comparativa_PSD/Welch/fm_full_dataset.bin",
         "nombre_csv": "/home/gcpds/Desktop/Procesamiento_ANE2/ANE2_procesamiento/Comparativa_PSD/Welch/Resultados/resultado_prueba_1.csv",
         "frecuencia_central": 80*1000000,  # 103.7 MHz
         "ancho_banda": 20*1000000,         # 20 MHz
